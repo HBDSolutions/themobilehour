@@ -1,0 +1,31 @@
+# Composer dependencies
+/vendor/
+
+# Laravel specific
+/node_modules/
+/public/storage
+/storage/*.key
+.env
+.phpunit.result.cache
+
+# Symfony specific
+/var/
+/.env.local
+.env.*.local
+
+# Generic IDE/project files
+*.swp
+*.swo
+*.idea/
+*.vscode/
+.DS_Store
+Thumbs.db
+
+# Logs and cache
+*.log
+*.cache
+
+# OS generated files
+ehthumbs.db
+Icon?
+Desktop.ini
