@@ -1,6 +1,4 @@
 <?php
-require_once("database.php");
-
 // define a global variable for the default user profile image
 $default_image = 'images/user_profile.png';
 
@@ -8,8 +6,7 @@ $default_image = 'images/user_profile.png';
 //USER MANAGEMENT FUNCTIONS
 
 //create a function to login 
-function login($username, $password) { 
-    global $conn;
+function login($conn, $username, $password) { 
     global $permissions;
 
     $sql = "SELECT * FROM user WHERE username = :username";
@@ -32,8 +29,7 @@ function login($username, $password) {
 }
 
 //create a function to retrieve salt 
-function retrieve_salt($username) { 
-    global $conn; 
+function retrieve_salt($conn, $username) { 
     $sql = "SELECT * FROM user WHERE username = :username";
     $statement = $conn->prepare($sql); 
     $statement->bindValue(':username', $username); 
@@ -44,10 +40,8 @@ function retrieve_salt($username) {
 }
 
 //create a function to add a new user 
-function add_new_user($firstname, $lastname, $email, $password, $shipping_address, $permissionsID, $isActive) {
-    global $conn;
-
-    //$default_image = 'images/user_profile.png';
+function add_new_user($conn, $firstname, $lastname, $email, $password, $shipping_address, $permissionsID, $isActive) {
+    // $default_image = 'images/user_profile.png';
 
     //if (!empty($profileimage) && ($profileimage != $default_image)) {
     //    $uploaddir = '../images/';
@@ -74,11 +68,10 @@ function add_new_user($firstname, $lastname, $email, $password, $shipping_addres
     $result = $statement->execute();
     $statement->closeCursor();
     return $result;  
-    }
+}
 
 // Create a function to check if an email is already registered
-function email_exists($email) {
-    global $conn;
+function email_exists($conn, $email) {
     $sql = "SELECT COUNT(*) FROM user WHERE username = :email";
     $stmt = $conn->prepare($sql);
     $stmt->bindValue(':email', $email);
@@ -95,9 +88,7 @@ function is_valid_password($password) {
 }
     
  //create a function to update an existing user 
-function update_user($id, $firstname, $lastname, $email, $password, $shipping_address, $permissionsID, $isActive) { 
-    global $conn;
-
+function update_user($conn, $id, $firstname, $lastname, $email, $password, $shipping_address, $permissionsID, $isActive) { 
     // Hash and salt the password using password_hash()
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -107,7 +98,7 @@ function update_user($id, $firstname, $lastname, $email, $password, $shipping_ad
     $statement->bindValue(':firstname', $firstname); 
     $statement->bindValue(':lastname', $lastname);
     $statement->bindValue(':username', $email);
-    $statement->bindValue(':password', $password);
+    $statement->bindValue(':password', $hashed_password);
     $statement->bindValue(':shipping_address', $shipping_address);
     $statement->bindValue(':permissionsID', $permissionsID);
     $statement->bindValue(':isActive', $isActive, PDO::PARAM_INT);
@@ -117,8 +108,7 @@ function update_user($id, $firstname, $lastname, $email, $password, $shipping_ad
     }
 
 //*create a function to fetch existing user
-function get_user_by_id($id) {
-    global $conn;
+function get_user_by_id($conn, $id) {
     $sql = "SELECT user.*, permissions.permissions_role 
             FROM user 
             LEFT JOIN permissions ON user.permissionsID = permissions.permissionsID 
@@ -132,8 +122,7 @@ function get_user_by_id($id) {
 }
 
 // Create a function to delete an existing user
-function delete_user($userID) {
-    global $conn;
+function delete_user($conn, $userID) {
     $sql = "DELETE FROM user WHERE userID = :userID";
     $stmt = $conn->prepare($sql);
     $stmt->bindValue(':userID', $userID, PDO::PARAM_INT);
@@ -147,9 +136,7 @@ function delete_user($userID) {
 // PRODUCT MANAGEMENT FUNCTIONS
 
 //create a function to add a new product 
-function add_product($product_Name, $manufacturer_ID, $product_Description, $stock_on_hand, $price, $image) {
-    global $conn; 
-    
+function add_product($conn, $product_Name, $manufacturer_ID, $product_Description, $stock_on_hand, $price, $image) {
     $uploaddir = '../assets/images/';
     $uploadfile = $uploaddir . basename($image);
 
@@ -175,9 +162,7 @@ function add_product($product_Name, $manufacturer_ID, $product_Description, $sto
 }
 
 //create a function to delete an existing product 
-function delete_product($id) {
-    global $conn;
-
+function delete_product($conn, $id) {
     $sql = "DELETE FROM products WHERE product_ID = :id";
     
     $statement = $conn->prepare($sql);
@@ -189,14 +174,12 @@ function delete_product($id) {
 }
 
 //create a function to update an existing product 
-function update_product($product_ID, $product_Name, $manufacturer_ID, $product_Description, $stock_on_hand, $price, $image) { 
-    global $conn;
-
+function update_product($conn, $product_ID, $product_Name, $manufacturer_ID, $product_Description, $stock_on_hand, $price, $image) { 
     $uploaddir = '../images/';
     $uploadfile = $uploaddir . basename($image);
     
 
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile)) {
         echo "File is valid, and was successfully uploaded.\n";
     }
 
@@ -215,15 +198,13 @@ function update_product($product_ID, $product_Name, $manufacturer_ID, $product_D
     }
 
 // Create a function to fetch all manufacturers
-function get_all_manufacturers() {
-    global $conn;
+function get_all_manufacturers($conn) {
     $stmt = $conn->query("SELECT manufacturer_ID, manufacturer_Name FROM manufacturer ORDER BY manufacturer_Name");
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 // Create a function to filter products
-function get_filtered_products($manufacturer_ID = null, $min_price = null, $max_price = null, $search = null, $specialOnly = false) {
-    global $conn;
+function get_filtered_products($conn, $manufacturer_ID = null, $min_price = null, $max_price = null, $search = null, $specialOnly = false) {
     $sql = "SELECT p.*, m.manufacturer_Name 
             FROM products p 
             JOIN manufacturer m ON p.manufacturer_ID = m.manufacturer_ID
@@ -259,8 +240,7 @@ function get_filtered_products($manufacturer_ID = null, $min_price = null, $max_
 }
 
 // Create functions to retrieve products
-function get_product_by_id($product_id) {
-    global $conn;
+function get_product_by_id($conn, $product_id) {
     $sql = "SELECT * FROM products WHERE product_ID = :id";
     $stmt = $conn->prepare($sql);
     $stmt->bindValue(':id', $product_id, PDO::PARAM_INT);
@@ -268,8 +248,7 @@ function get_product_by_id($product_id) {
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-function get_all_products() {
-    global $conn;
+function get_all_products($conn) {
     $query = "SELECT * FROM products";
     $stmt = $conn->prepare($query);
     $stmt->execute();
@@ -319,8 +298,7 @@ function get_cart_items() {
 }
 
 // Create functions to manage orders
-function add_order($userID, $shipping_address, $total_amount) {
-    global $conn;
+function add_order($conn, $userID, $shipping_address, $total_amount) {
     $sql = "INSERT INTO orders (userID, order_date, order_status, shipping_address, total_amount, created_at)
             VALUES (:userID, NOW(), 'Pending', :shipping_address, :total_amount, NOW())";
     $stmt = $conn->prepare($sql);
@@ -333,8 +311,7 @@ function add_order($userID, $shipping_address, $total_amount) {
     return $order_id;
 }
 
-function add_order_item($order_id, $product_ID, $quantity, $price_at_time) {
-    global $conn;
+function add_order_item($conn, $order_id, $product_ID, $quantity, $price_at_time) {
     $sql = "INSERT INTO order_items (orderID, product_ID, quantity, price_at_time)
             VALUES (:orderID, :product_ID, :quantity, :price_at_time)";
     $stmt = $conn->prepare($sql);
@@ -346,8 +323,7 @@ function add_order_item($order_id, $product_ID, $quantity, $price_at_time) {
     $stmt->closeCursor();
 }
 
-function get_all_orders_with_items() {
-    global $conn;
+function get_all_orders_with_items($conn) {
     $sql = "SELECT o.orderID, o.order_date, o.order_status, o.shipping_address, o.total_amount, 
                    u.firstname, u.lastname, u.username
             FROM orders o
@@ -356,14 +332,13 @@ function get_all_orders_with_items() {
     $orders = $conn->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
     foreach ($orders as &$order) {
-        $order['items'] = get_order_items($order['orderID']);
+        $order['items'] = get_order_items($conn, $order['orderID']);
     }
     unset($order);
     return $orders;
 }
 
-function get_order_items($orderID) {
-    global $conn;
+function get_order_items($conn, $orderID) {
     $sql = "SELECT oi.product_ID, p.product_Name, oi.quantity, oi.price_at_time
             FROM order_items oi
             LEFT JOIN products p ON oi.product_ID = p.product_ID
@@ -376,8 +351,7 @@ function get_order_items($orderID) {
     return $items;
 }
 
-function get_orders_by_user($userID) {
-    global $conn;
+function get_orders_by_user($conn, $userID) {
     $sql = "SELECT * FROM orders WHERE userID = :userID ORDER BY order_date DESC";
     $stmt = $conn->prepare($sql);
     $stmt->bindValue(':userID', $userID, PDO::PARAM_INT);
@@ -433,9 +407,7 @@ function show_changed_fields($details) {
 
 // Create a change log function
 
-?><?php
-function log_change($changed_by, $affected_table, $affected_id, $action, $change_details) {
-    global $conn;
+function log_change($conn, $changed_by, $affected_table, $affected_id, $action, $change_details) {
     $stmt = $conn->prepare("INSERT INTO change_log (changed_by, affected_table, affected_id, action, change_details) VALUES (:changed_by, :affected_table, :affected_id, :action, :change_details)");
     $stmt->bindValue(':changed_by', $changed_by, PDO::PARAM_INT);
     $stmt->bindValue(':affected_table', $affected_table);
@@ -444,3 +416,4 @@ function log_change($changed_by, $affected_table, $affected_id, $action, $change
     $stmt->bindValue(':change_details', $change_details);
     $stmt->execute();
 }
+?>
