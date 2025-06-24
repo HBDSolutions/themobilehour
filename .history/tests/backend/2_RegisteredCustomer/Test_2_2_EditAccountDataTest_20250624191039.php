@@ -95,7 +95,6 @@ function submit_account_update($customerId, array $updates) {
     if (isset($updates['email']) && strpos($updates['email'], '@') === false) {
         return ['success' => false, 'message' => 'Invalid email format'];
     }
-    // Simulate update
     return ['success' => true];
 }
 function get_customer_account($customerId) {
