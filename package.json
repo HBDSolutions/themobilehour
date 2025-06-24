@@ -1,0 +1,26 @@
+{
+  "name": "themobilehour",
+  "version": "1.0.0",
+  "description": "For CLSICT0062 Assessment Task 2",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HBDSolutions/themobilehour.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HBDSolutions/themobilehour/issues"
+  },
+  "homepage": "https://github.com/HBDSolutions/themobilehour#readme",
+  "devDependencies": {
+    "cypress": "^14.5.0"
+  }
+}

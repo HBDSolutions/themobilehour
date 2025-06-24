@@ -49,7 +49,7 @@ if (email_exists($email)) {
 
 
 // Call the model function
-$result = add_new_user($firstname, $lastname, $email, $password, $shipping_address, $permissionsID, $isActive);
+$result = add_new_user($conn, $firstname, $lastname, $email, $password, $shipping_address, $permissionsID, $isActive);
 
 if ($result) {
     header('Location: /themobilehour/controller/manageadmin.php?action=users&success=User added successfully.');
