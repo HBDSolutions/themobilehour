@@ -28,8 +28,8 @@ class Test_5_1_DBMSActiveTest extends TestCase
     */
     public function test_5_1_1_DBMSRunningInXAMPP()
     {
-        // TODO: Manual/integration check for XAMPP MySQL service status.
-        $this->markTestIncomplete('This scenario requires an integration or manual check.');
+        // TODO: Implement test logic for this scenario.
+        // This test may require a manual or integration check that XAMPP's MySQL service is running.
     }
 
     /*
@@ -41,8 +41,8 @@ class Test_5_1_DBMSActiveTest extends TestCase
     */
     public function test_5_1_2_DBMSAccessibleViaPhpMyAdmin()
     {
-        // TODO: Manual or browser automation (Selenium) to check phpMyAdmin accessibility.
-        $this->markTestIncomplete('This scenario requires browser automation or manual verification.');
+        // TODO: Implement test logic for this scenario.
+        // This might involve checking HTTP status or automating browser login to phpMyAdmin.
     }
 
     /*
@@ -54,7 +54,7 @@ class Test_5_1_DBMSActiveTest extends TestCase
     */
     public function test_5_1_3_ApplicationCanConnectToDBMS()
     {
-        // Example PDO DB connection test
+        // Example implementation using PDO:
         $host = 'localhost';
         $db   = 'your_db_name';
         $user = 'your_db_user';
