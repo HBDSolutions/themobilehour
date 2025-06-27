@@ -44,7 +44,7 @@ if (!isset($_SESSION['user']) || $_SESSION['permissionsID'] < 2) {
                 <form class="item-form" enctype="multipart/form-data" action="../controller/addnewproduct.php" method="POST">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="product">Product name:</label>
+                            <label for="product_Name">Product name:</label>
                             <input type="text" id="product" name="product_Name" placeholder="Enter product Name" class="form-control" required />
                         </div>
 
@@ -87,79 +87,15 @@ if (!isset($_SESSION['user']) || $_SESSION['permissionsID'] < 2) {
                         </div>
                     </div>
                
+                    <div class="form-row">
+                    </div>
                     <div class="form-group">
                         <label for="image">Upload product image file</label>
                         <input name="image" type="file" class="form-control-file" id="image" />
                     </div>
-
-                    <!-- Features fields -->
-                    <h3>Product Features</h3>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="weight">Weight</label>
-                            <input type="number" step="0.01" name="weight" id="weight" class="form-control">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="height">Height</label>
-                            <input type="number" step="0.01" name="height" id="height" class="form-control">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="width">Width</label>
-                            <input type="number" step="0.01" name="width" id="width" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="thickness">Thickness</label>
-                            <input type="number" step="0.01" name="thickness" id="thickness" class="form-control">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="operating_system">Operating System</label>
-                            <input type="text" name="operating_system" id="operating_system" class="form-control">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="screensize">Screen Size</label>
-                            <input type="number" step="0.01" name="screensize" id="screensize" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="resolution">Resolution</label>
-                            <input type="number" name="resolution" id="resolution" class="form-control">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="cpu">CPU</label>
-                            <input type="number" name="cpu" id="cpu" class="form-control">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="ram">RAM</label>
-                            <input type="number" name="ram" id="ram" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="storage">Storage</label>
-                            <input type="number" name="storage" id="storage" class="form-control">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="battery">Battery</label>
-                            <input type="number" step="0.01" name="battery" id="battery" class="form-control">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="rear_camera">Rear Camera</label>
-                            <input type="number" name="rear_camera" id="rear_camera" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="front_camera">Front Camera</label>
-                            <input type="number" name="front_camera" id="front_camera" class="form-control">
-                        </div>
-                    </div>
-
                     <div class="form-group col-md-12 form-centre">
-                        <button class="btn btn-info" type="submit">Add product</button>
-                        <button class="btn btn-info" type="reset">Reset</button>
+                    <button class="btn btn-info" type="submit">Add product</button>
+                    <button class="btn btn-info" type="reset">Reset</button>
                     </div>
                 </form>
             </section>
