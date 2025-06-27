@@ -136,7 +136,7 @@ function delete_user($conn, $userID) {
 // PRODUCT MANAGEMENT FUNCTIONS
 
 //create a function to add a new product 
-function add_product($conn, $product_Name, $manufacturer_ID, $product_Description, $stock_on_hand, $price, $image, $featureID) {
+function add_product($conn, $product_Name, $manufacturer_ID, $product_Description, $stock_on_hand, $price, $image) {
     $uploaddir = '../assets/images/';
     $uploadfile = $uploaddir . basename($image);
 
@@ -147,8 +147,8 @@ function add_product($conn, $product_Name, $manufacturer_ID, $product_Descriptio
         move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile);
     }
 
-    $sql = "INSERT INTO products (product_Name, manufacturer_ID, product_Description, stock_on_hand, price, image, featureID) 
-            VALUES (:product_Name, :manufacturer_ID, :product_Description, :stock_on_hand, :price, :image, :featureID)"; 
+    $sql = "INSERT INTO products (product_Name, manufacturer_ID, product_Description, stock_on_hand, price, image) 
+            VALUES (:product_Name, :manufacturer_ID, :product_Description, :stock_on_hand, :price, :image)"; 
     $statement = $conn->prepare($sql); 
     $statement->bindValue(':product_Name', $product_Name); 
     $statement->bindValue(':manufacturer_ID', $manufacturer_ID);
@@ -156,7 +156,6 @@ function add_product($conn, $product_Name, $manufacturer_ID, $product_Descriptio
     $statement->bindValue(':stock_on_hand', $stock_on_hand);
     $statement->bindValue(':price', $price);
     $statement->bindValue(':image', $image);
-    $statement->bindValue(':featureID', $featureID, PDO::PARAM_INT);
     $result = $statement->execute();
     $statement->closeCursor();
     return $result; 
