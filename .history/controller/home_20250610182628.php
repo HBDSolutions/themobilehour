@@ -7,7 +7,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/model/database.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/model/functions.php");
 
 // Fetch manufacturers for the filter
-$manufacturers = get_all_manufacturers($conn);
+$manufacturers = get_all_manufacturers();
 
 // Fetch filtered specials (products with special=1)
 $manufacturer_ID = $_GET['manufacturer_ID'] ?? null;
