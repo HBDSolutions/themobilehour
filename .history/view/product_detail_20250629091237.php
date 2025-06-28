@@ -40,17 +40,17 @@ if (!$product): ?>
                           <li>Thickness: <?= htmlspecialchars($product['thickness']) ?> mm</li>
                           <li>Operating System: <?= htmlspecialchars($product['operating_system']) ?></li>
                           <li>Screen Size: <?= htmlspecialchars($product['screensize']) ?> in</li>
-                          <li>Resolution: <?= htmlspecialchars($product['resolution']) ?> px</li>
+                          <li>Resolution: <?= htmlspecialchars($product['resolution']) ?></li>
                         </ul>
                       </div>
                       <div class="col-md-6">
                         <ul>
                           <li>CPU: <?= htmlspecialchars($product['cpu']) ?></li>
-                          <li>RAM: <?= htmlspecialchars($product['ram']) ?> GB</li>
-                          <li>Storage: <?= htmlspecialchars($product['storage']) ?> GB</li>
-                          <li>Battery: <?= htmlspecialchars($product['battery']) ?> mAh</li>
-                          <li>Rear Camera: <?= htmlspecialchars($product['rear_camera']) ?> megapixels</li>
-                          <li>Front Camera: <?= htmlspecialchars($product['front_camera']) ?> megapixels</li>
+                          <li>RAM: <?= htmlspecialchars($product['ram']) ?></li>
+                          <li>Storage: <?= htmlspecialchars($product['storage']) ?></li>
+                          <li>Battery: <?= htmlspecialchars($product['battery']) ?></li>
+                          <li>Rear Camera: <?= htmlspecialchars($product['rear_camera']) ?></li>
+                          <li>Front Camera: <?= htmlspecialchars($product['front_camera']) ?></li>
                         </ul>
                       </div>
                     </div>

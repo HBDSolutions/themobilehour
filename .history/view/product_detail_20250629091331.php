@@ -48,9 +48,9 @@ if (!$product): ?>
                           <li>CPU: <?= htmlspecialchars($product['cpu']) ?></li>
                           <li>RAM: <?= htmlspecialchars($product['ram']) ?> GB</li>
                           <li>Storage: <?= htmlspecialchars($product['storage']) ?> GB</li>
-                          <li>Battery: <?= htmlspecialchars($product['battery']) ?> mAh</li>
-                          <li>Rear Camera: <?= htmlspecialchars($product['rear_camera']) ?> megapixels</li>
-                          <li>Front Camera: <?= htmlspecialchars($product['front_camera']) ?> megapixels</li>
+                          <li>Battery: <?= htmlspecialchars($product['battery']) ?></li>
+                          <li>Rear Camera: <?= htmlspecialchars($product['rear_camera']) ?></li>
+                          <li>Front Camera: <?= htmlspecialchars($product['front_camera']) ?></li>
                         </ul>
                       </div>
                     </div>
