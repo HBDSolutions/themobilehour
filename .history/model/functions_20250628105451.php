@@ -387,7 +387,6 @@ function user_has_orders($conn, $userID) {
 }
 
 
-
 // CHANGE LOG FUNCTIONS
 
 // Create a function to only show changed fields and mask passwords
