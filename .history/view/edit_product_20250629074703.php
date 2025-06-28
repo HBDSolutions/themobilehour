@@ -39,7 +39,7 @@ if (!isset($_SESSION['user']) || $_SESSION['permissionsID'] < 2) {
                 if (isset($_GET['id'])) {
                     $id = intval($_GET['id']);
                 } else {
-                    header('Location: /themobilehour/controller/manageproducts.php');
+                    header('Location: ../view/admin_product.php');
                     exit();
                 }
 
@@ -58,7 +58,7 @@ if (!isset($_SESSION['user']) || $_SESSION['permissionsID'] < 2) {
                     $features = $stmt_feat->fetch(PDO::FETCH_ASSOC);
                 }
             ?>
-            <form class="item-form" enctype="multipart/form-data" action="/themobilehour/controller/editproduct.php?id=<?php echo $id?>" method="POST">
+            <form class="item-form" enctype="multipart/form-data" action="../controller/editproduct.php?id=<?php echo $id?>" method="POST">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="product_Name">Edit product name:</label>
@@ -67,7 +67,7 @@ if (!isset($_SESSION['user']) || $_SESSION['permissionsID'] < 2) {
                     <div class="form-group col-md-6">
                         <label for="manufacturer">Edit manufacturer:</label>
                         <select id="manufacturer" name="manufacturer" class="form-control" required>
-                            <option value="" disabled <?= empty($row['manufacturer_ID']) ? 'selected' : 'hidden' ?>>Select Manufacturer</option>
+                            <option value="" disabled>Select Manufacturer</option>
                             <?php
                                 $sql = "SELECT manufacturer_ID, manufacturer_Name FROM manufacturer";
                                 $manufacturers = $conn->query($sql);
@@ -107,7 +107,7 @@ if (!isset($_SESSION['user']) || $_SESSION['permissionsID'] < 2) {
                     <label for="image">Edit product image file:</label>
                     <input name="image" type="file" class="form-control-file" id="image" /><br>
                     <img src="../<?php echo htmlspecialchars($row['image']); ?>" width="75" height="75" />
-                    <input type="hidden" name="existing_image" value="<?php echo htmlspecialchars($row['image']);?>" />
+                    <input type="hidden" name="image" value="<?php echo htmlspecialchars($row['image']);?>" />
                 </div>
 
                 <!-- Features fields -->

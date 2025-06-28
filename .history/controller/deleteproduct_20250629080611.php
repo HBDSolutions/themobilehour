@@ -16,8 +16,8 @@ if (isset($_GET['id'])) {
         $result = delete_product($conn, $id);
 
         if ($result) {
-            // FIX: Pass $conn as the first argument to log_change
-            log_change($conn, $_SESSION['userID'], 'product', $id, 'delete', json_encode(['deleted' => $product_data]));
+            // Log the deletion
+            log_change($_SESSION['userID'], 'product', $id, 'delete', json_encode(['deleted' => $product_data]));
             header('Location: /themobilehour/controller/manageproducts.php?success=Product deleted successfully.');
             exit();
         } else {

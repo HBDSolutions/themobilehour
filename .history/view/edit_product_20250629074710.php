@@ -67,7 +67,7 @@ if (!isset($_SESSION['user']) || $_SESSION['permissionsID'] < 2) {
                     <div class="form-group col-md-6">
                         <label for="manufacturer">Edit manufacturer:</label>
                         <select id="manufacturer" name="manufacturer" class="form-control" required>
-                            <option value="" disabled <?= empty($row['manufacturer_ID']) ? 'selected' : 'hidden' ?>>Select Manufacturer</option>
+                            <option value="" disabled>Select Manufacturer</option>
                             <?php
                                 $sql = "SELECT manufacturer_ID, manufacturer_Name FROM manufacturer";
                                 $manufacturers = $conn->query($sql);
