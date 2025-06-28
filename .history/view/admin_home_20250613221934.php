@@ -55,7 +55,7 @@
                 <!-- Manage Products Tile -->
                 <a href="/themobilehour/controller/manageproducts.php" class="admin-tile text-center text-decoration-none">Manage Products</a>
                 <!-- Manage Customers Tile -->
-                <a href="/themobilehour/controller/manageadmin.php?action=customers" class="admin-tile text-center text-decoration-none">Manage Customers</a>
+                <a href="/themobilehour/view/admin_customers.php" class="admin-tile text-center text-decoration-none">Manage Customers</a>
                 <!-- Manage Orders Tile -->
                 <a href="/themobilehour/controller/manageorders.php" class="admin-tile text-center text-decoration-none">Manage Orders</a>
                 <!-- Change Log Tile -->
