@@ -71,7 +71,7 @@
                   echo "<input type='hidden' name='action' value='add'>";
                   echo "<input type='number' name='quantity' value='1' min='1' class='form-control form-control-sm' style='width: 70px;'>";
                   echo "<button type='submit' class='btn btn-info btn-sm'>Add to Cart</button>";
-                  echo "<a href='/themobilehour/controller/detailproduct.php?id=" . $row['product_ID'] . "' class='btn btn-info'>View Details</a>";
+                  echo "<a href='/themobilehour/view/product_detail.php?id=" . $row['product_ID'] . "' class='btn btn-info'>View Details</a>";
                   echo "</form>";
                 echo "</div>";
               echo "</div>";

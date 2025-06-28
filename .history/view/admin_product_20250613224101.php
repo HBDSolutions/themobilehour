@@ -91,7 +91,7 @@
                             <td><?= htmlspecialchars($row['stock_on_hand']) ?></td>
                             <td>$<?= htmlspecialchars($row['price']) ?></td>
                             <td><img src="../<?= htmlspecialchars($row['image']) ?>" class="imgthumb"></td>
-                            <td><a href="/themobilehour/controller/editproduct.php?id=<?= htmlspecialchars($row['product_ID']) ?>"><i class="bi bi-pencil-square"></i></a></td>
+                            <td><a href="../view/edit_product.php?id=<?= htmlspecialchars($row['product_ID']) ?>"><i class="bi bi-pencil-square"></i></a></td>
                             <td><a href="../controller/deleteproduct.php?id=<?= htmlspecialchars($row['product_ID']) ?>" class="delete"><i class="bi bi-trash"></i></a></td>
                         </tr>
                     <?php endforeach; ?>

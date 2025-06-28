@@ -60,6 +60,6 @@ $result = add_product($conn, $product_Name, $manufacturer_ID, $product_Descripti
 if (!$result) {
     echo ("A problem occurred");
 } else {
-    header('Location: /themobilehour/controller/manageproducts.php');
+    header('Location: ../view/admin_product.php');
 }
 ?>

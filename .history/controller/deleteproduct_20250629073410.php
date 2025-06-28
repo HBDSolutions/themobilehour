@@ -20,20 +20,20 @@ if (isset($_GET['id'])) {
             header('Location: /themobilehour/controller/manageproducts.php?success=Product deleted successfully.');
             exit();
         } else {
-            header('Location: /themobilehour/controller/manageproducts.php?error=Failed to delete product.');
+            header('Location: /themobilehour/view/admin_product.php?error=Failed to delete product.');
             exit();
         }
     } catch (PDOException $e) {
         if ($e->getCode() == '23000') {
-            header('Location: /themobilehour/controller/manageproducts.php?error=Cannot delete product: it is referenced in existing orders.');
+            header('Location: /themobilehour/view/admin_product.php?error=Cannot delete product: it is referenced in existing orders.');
             exit();
         } else {
-            header('Location: /themobilehour/controller/manageproducts.php?error=Database error: ' . urlencode($e->getMessage()));
+            header('Location: /themobilehour/view/admin_product.php?error=Database error: ' . urlencode($e->getMessage()));
             exit();
         }
     }
 } else {
-    header('Location: /themobilehour/controller/manageproducts.php?error=No product ID specified.');
+    header('Location: /themobilehour/view/admin_product.php?error=No product ID specified.');
     exit();
 }
 ?>

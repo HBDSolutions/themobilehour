@@ -33,7 +33,7 @@ if (isset($_GET['id'])) {
         }
     }
 } else {
-    header('Location: /themobilehour/controller/manageproducts.php?error=No product ID specified.');
+    header('Location: /themobilehour/view/admin_product.php?error=No product ID specified.');
     exit();
 }
 ?>
