@@ -92,70 +92,70 @@ if (!isset($_SESSION['user']) || $_SESSION['permissionsID'] < 2) {
                         <input name="image" type="file" class="form-control-file" id="image" />
                     </div>
 
-                <!-- Features fields -->
-                <h3>Product Features</h3>
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="weight">Weight (g)</label>
-                        <input type="number" step="0.01" name="weight" id="weight" class="form-control" value="<?php echo htmlspecialchars($features['weight'] ?? ''); ?>">
+                    <!-- Features fields -->
+                    <h3>Product Features</h3>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="weight">Weight</label>
+                            <input type="number" step="0.01" name="weight" id="weight" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="height">Height</label>
+                            <input type="number" step="0.01" name="height" id="height" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="width">Width</label>
+                            <input type="number" step="0.01" name="width" id="width" class="form-control">
+                        </div>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="height">Height (mm)</label>
-                        <input type="number" step="0.01" name="height" id="height" class="form-control" value="<?php echo htmlspecialchars($features['height'] ?? ''); ?>">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="thickness">Thickness</label>
+                            <input type="number" step="0.01" name="thickness" id="thickness" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="operating_system">Operating System</label>
+                            <input type="text" name="operating_system" id="operating_system" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="screensize">Screen Size</label>
+                            <input type="number" step="0.01" name="screensize" id="screensize" class="form-control">
+                        </div>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="width">Width (mm)</label>
-                        <input type="number" step="0.01" name="width" id="width" class="form-control" value="<?php echo htmlspecialchars($features['width'] ?? ''); ?>">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="resolution">Resolution</label>
+                            <input type="number" name="resolution" id="resolution" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="cpu">CPU</label>
+                            <input type="number" name="cpu" id="cpu" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="ram">RAM</label>
+                            <input type="number" name="ram" id="ram" class="form-control">
+                        </div>
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="thickness">Thickness (mm)</label>
-                        <input type="number" step="0.01" name="thickness" id="thickness" class="form-control" value="<?php echo htmlspecialchars($features['thickness'] ?? ''); ?>">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="storage">Storage</label>
+                            <input type="number" name="storage" id="storage" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="battery">Battery</label>
+                            <input type="number" step="0.01" name="battery" id="battery" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="rear_camera">Rear Camera</label>
+                            <input type="number" name="rear_camera" id="rear_camera" class="form-control">
+                        </div>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="operating_system">Operating System</label>
-                        <input type="text" name="operating_system" id="operating_system" class="form-control" value="<?php echo htmlspecialchars($features['operating_system'] ?? ''); ?>">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="front_camera">Front Camera</label>
+                            <input type="number" name="front_camera" id="front_camera" class="form-control">
+                        </div>
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="screensize">Screen Size (in)</label>
-                        <input type="number" step="0.01" name="screensize" id="screensize" class="form-control" value="<?php echo htmlspecialchars($features['screensize'] ?? ''); ?>">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="resolution">Resolution (pixels)</label>
-                        <input type="number" name="resolution" id="resolution" class="form-control" value="<?php echo htmlspecialchars($features['resolution'] ?? ''); ?>">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="cpu">CPU (chip name)</label>
-                        <input type="number" name="cpu" id="cpu" class="form-control" value="<?php echo htmlspecialchars($features['cpu'] ?? ''); ?>">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="ram">RAM (GB)</label>
-                        <input type="number" name="ram" id="ram" class="form-control" value="<?php echo htmlspecialchars($features['ram'] ?? ''); ?>">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="storage">Storage (GB)</label>
-                        <input type="number" name="storage" id="storage" class="form-control" value="<?php echo htmlspecialchars($features['storage'] ?? ''); ?>">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="battery">Battery (mAh)</label>
-                        <input type="number" step="0.01" name="battery" id="battery" class="form-control" value="<?php echo htmlspecialchars($features['battery'] ?? ''); ?>">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="rear_camera">Rear Camera (megapixels)</label>
-                        <input type="number" name="rear_camera" id="rear_camera" class="form-control" value="<?php echo htmlspecialchars($features['rear_camera'] ?? ''); ?>">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="front_camera">Front Camera (megapixels)</label>
-                        <input type="number" name="front_camera" id="front_camera" class="form-control" value="<?php echo htmlspecialchars($features['front_camera'] ?? ''); ?>">
-                    </div>
-                </div>
 
                     <div class="form-group col-md-12 form-centre">
                         <button class="btn btn-info" type="submit">Add product</button>
