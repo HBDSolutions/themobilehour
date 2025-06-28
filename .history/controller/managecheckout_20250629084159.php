@@ -20,7 +20,7 @@ $cart_items = $_SESSION['cart'];
 $cart_total = 0;
 $products = [];
 foreach ($cart_items as $item) {
-    $product = get_product_by_id($conn, $item['product_ID']);
+    $product = get_product_by_id($item['product_ID']);
     if ($product) {
         $product['quantity'] = $item['quantity'];
         $product['subtotal'] = $product['price'] * $item['quantity'];

@@ -31,29 +31,21 @@ if (!$product): ?>
                   <p class="item-description"><?= htmlspecialchars($product['product_Description']) ?></p>
                   <h5>Product Features:</h5>
                   <?php if ($product['featureID']): ?>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <ul>
-                          <li>Weight: <?= htmlspecialchars($product['weight']) ?></li>
-                          <li>Height: <?= htmlspecialchars($product['height']) ?></li>
-                          <li>Width: <?= htmlspecialchars($product['width']) ?></li>
-                          <li>Thickness: <?= htmlspecialchars($product['thickness']) ?></li>
-                          <li>Operating System: <?= htmlspecialchars($product['operating_system']) ?></li>
-                          <li>Screen Size: <?= htmlspecialchars($product['screensize']) ?></li>
-                          <li>Resolution: <?= htmlspecialchars($product['resolution']) ?></li>
-                        </ul>
-                      </div>
-                      <div class="col-md-6">
-                        <ul>
-                          <li>CPU: <?= htmlspecialchars($product['cpu']) ?></li>
-                          <li>RAM: <?= htmlspecialchars($product['ram']) ?></li>
-                          <li>Storage: <?= htmlspecialchars($product['storage']) ?></li>
-                          <li>Battery: <?= htmlspecialchars($product['battery']) ?></li>
-                          <li>Rear Camera: <?= htmlspecialchars($product['rear_camera']) ?></li>
-                          <li>Front Camera: <?= htmlspecialchars($product['front_camera']) ?></li>
-                        </ul>
-                      </div>
-                    </div>
+                    <ul>
+                      <li>Weight: <?= htmlspecialchars($product['weight']) ?></li>
+                      <li>Height: <?= htmlspecialchars($product['height']) ?></li>
+                      <li>Width: <?= htmlspecialchars($product['width']) ?></li>
+                      <li>Thickness: <?= htmlspecialchars($product['thickness']) ?></li>
+                      <li>Operating System: <?= htmlspecialchars($product['operating_system']) ?></li>
+                      <li>Screen Size: <?= htmlspecialchars($product['screensize']) ?></li>
+                      <li>Resolution: <?= htmlspecialchars($product['resolution']) ?></li>
+                      <li>CPU: <?= htmlspecialchars($product['cpu']) ?></li>
+                      <li>RAM: <?= htmlspecialchars($product['ram']) ?></li>
+                      <li>Storage: <?= htmlspecialchars($product['storage']) ?></li>
+                      <li>Battery: <?= htmlspecialchars($product['battery']) ?></li>
+                      <li>Rear Camera: <?= htmlspecialchars($product['rear_camera']) ?></li>
+                      <li>Front Camera: <?= htmlspecialchars($product['front_camera']) ?></li>
+                    </ul>
                   <?php else: ?>
                     <p>No features listed for this product.</p>
                   <?php endif; ?>
