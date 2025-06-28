@@ -1,5 +1,5 @@
 <?php
-if (!$product): ?>
+<?php if (!$product): ?>
     <p>Product not found.</p>
     <?php exit(); ?>
 <?php endif; ?>
