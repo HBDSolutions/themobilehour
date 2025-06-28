@@ -71,7 +71,7 @@ if ($featureID) {
 }
 
 // --- Update product ---
-$result = update_product($conn, $id, $product_Name, $manufacturer_ID, $product_Description, $stock_on_hand, $price, $image);
+$result = update_product($id, $product_Name, $manufacturer_ID, $product_Description, $stock_on_hand, $price, $image);
 
 if (!$result) {
     echo ("A problem occurred");
