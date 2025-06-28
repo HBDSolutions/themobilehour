@@ -82,7 +82,7 @@
                     </div>
                     
                     <div class="form-group col-md-12 form-centre">
-                        <a href="/themobilehour/controller/edituser.php?id=<?= $user['userID']; ?>" class="btn btn-info">Edit Account</a>
+                        <a href="/themobilehour/view/edit_user.php?id=<?= $user['userID']; ?>" class="btn btn-info">Edit Account</a>
                     </div>
                     <?php
                     
