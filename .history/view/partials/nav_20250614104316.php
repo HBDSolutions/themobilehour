@@ -56,8 +56,7 @@ $current_action = $_GET['action'] ?? null;
         <?php endif; ?>
 
         <li>
-            <a href="/themobilehour/view/cart.php"
-               class="<?= $current == 'cart.php' ? 'active' : '' ?>">Cart</a>
+            <a href="/themobilehour/view/cart.php" class="<?= $current == 'cart.php' ? 'active' : '' ?>">Cart</a>
         </li>
 
         <?php if (isset($_SESSION['user'])): ?>
