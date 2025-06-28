@@ -67,7 +67,7 @@
                   <input type="hidden" name="action" value="add">
                   <button type="submit" class="btn btn-info">Add to Cart</button>
                 </form>
-                <a href="/themobilehour/controller/detailproduct.php?id=<?= $product['product_ID'] ?>" class="btn btn-info">View Details</a>
+                <a href="/themobilehour/view/product_detail.php?id=<?= $product['product_ID'] ?>" class="btn btn-info">View Details</a>
               </div>
             </div>
           </div>
