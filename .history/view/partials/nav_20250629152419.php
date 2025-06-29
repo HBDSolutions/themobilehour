@@ -57,7 +57,8 @@ $current_action = $_GET['action'] ?? null;
         
         <?php if (!isset($_SESSION['userID'])): ?>
             <li>
-                <a href="/themobilehour/controller/managecustomers.php?action=add" class="<?= $current == 'register.php' ? 'active' : '' ?>">Register</a>
+                <a href="/themobilehour/view/register.php"
+                   class="<?= $current == 'register.php' ? 'active' : '' ?>">Register</a>
             </li>
         <?php endif; ?>
     </ul>
