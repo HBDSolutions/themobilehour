@@ -16,7 +16,7 @@ $cart_items = $_SESSION['cart'];
 // Calculate total
 $cart_total = 0;
 foreach ($cart_items as $item) {
-    $product = get_product_by_id($conn, $item['product_ID']);
+    $product = get_product_by_id($item['product_ID']);
     if ($product) {
         $cart_total += $product['price'] * $item['quantity'];
     }

@@ -16,7 +16,7 @@ $cart_items = $_SESSION['cart'];
 // Calculate total
 $cart_total = 0;
 foreach ($cart_items as $item) {
-    $product = get_product_by_id($conn, $item['product_ID']);
+    $product = get_product_by_id($item['product_ID']);
     if ($product) {
         $cart_total += $product['price'] * $item['quantity'];
     }
@@ -29,7 +29,7 @@ $order_id = add_order($userID, $address, $purchase_total);
 
 if ($order_id) {
     foreach ($cart_items as $item) {
-        $product = get_product_by_id($conn, $item['product_ID']);
+        $product = get_product_by_id($item['product_ID']);
         if ($product) {
             add_order_item($order_id, $item['product_ID'], $item['quantity'], $product['price']);
         }
