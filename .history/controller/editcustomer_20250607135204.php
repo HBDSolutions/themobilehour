@@ -45,7 +45,7 @@ if (isset($_POST['isActive'])) {
 }
 
 //call the update_user() function and pass the variables including the primary key for the record to be updated
-$result = update_user($conn, $id, $firstname, $lastname, $username, $password, $shipping_address, $permissionsID, $isActive);
+$result = update_user($id, $firstname, $lastname, $username, $password, $shipping_address, $permissionsID, $isActive);
 
 if (!$result) {
     echo ("A problem occurred");
