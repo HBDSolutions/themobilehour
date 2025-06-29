@@ -55,8 +55,7 @@ if ($result) {
     }
     // If admin manager or admin adds a customer
     if (isset($_SESSION['permissionsID']) && in_array($_SESSION['permissionsID'], [2, 3]) && $permissionsID == 1) {
-        header('Location: /themobilehour/controller/managecustomers.php?success=Registration successful.');
-        exit();
+        header('Location: /themobilehour/controller/managecustomers.php?success=Registration successful.');        exit();
     }
     // If a user self-registers as a customer (no admin session)
     header('Location: /themobilehour/view/account.php?success=Registration successful.');

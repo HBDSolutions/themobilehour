@@ -39,29 +39,30 @@ include_once("../model/database.php");
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="firstname">First name:</label>
-                            <input type="text" id="firstname" name="firstname" placeholder="Enter customer's first name" class="form-control" required />
+                            <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" class="form-control" required />
                         </div>
                         <div class="form-group col-md-6">
                             <label for="lastname">Last name:</label>
-                            <input type="text" id="lastname" name="lastname" placeholder="Enter customer's last name" class="form-control" required />
+                            <input type="text" id="lastname" name="lastname" placeholder="Enter your last name" class="form-control" required />
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="email">Email:</label>
-                            <input type="text" id="email" name="email" placeholder="Enter user email address (user@example)" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+$" title="Username must be in the format xxxxxxx@xxxx (letters/numbers only, no dots or TLD)." class="form-control" required autocomplete="off" value="" />
+                            <input type="text" id="email" name="email" placeholder="Enter your email address" class="form-control" required />
                         </div>
                         <div class="form-group col-md-6">
                             <label for="password">Password:</label>
-                            <input type="password" id="password" name="password" placeholder="Min 8 chars, incl. upper, lower, number, special" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$" title="Password must be at least 8 characters and include uppercase, lowercase, number, and special character." class="form-control" required autocomplete="off" value="" />
+                            <input type="password" id="password" name="password" placeholder="Create a password" class="form-control" required />
+                    
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="shipping_address">Shipping Address:</label>
-                            <input type="text" id="shipping_address" name="shipping_address" placeholder="Start typing your address..." class="form-control" autocomplete="off" />
+                            <input type="text" id="shipping_address" name="shipping_address" placeholder="Start typing your address..." class="form-control" autocomplete="off" required />
                         </div>
                     </div>
 
@@ -79,9 +80,8 @@ include_once("../model/database.php");
                     </script>
                     
                     <div class="form-group col-md-12 form-centre">
-                        <button class="btn btn-info" type="submit">Register</button>
+                        <button class="btn btn-info" type="submit">Submit</button>
                         <button class="btn btn-info" type="reset">Reset</button>
-                        <a href="admin_customers.php" class="btn btn-info">Customer Admin</a>
                     </div>
                 </form>
             </section>
