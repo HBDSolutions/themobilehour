@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $isActive = $_POST['isActive'] ?? $old_data['isActive'];
 
     // Update user
-    $result = update_user($conn, $id, $firstname, $lastname, $username, $password, $shipping_address, $permissionsID, $isActive);
+    $result = update_user($id, $firstname, $lastname, $username, $password, $shipping_address, $permissionsID, $isActive);
 
     // Fetch new data after update
     $stmt = $conn->prepare("SELECT * FROM user WHERE userID = :id");
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $new_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // Log the change
-    log_change($conn, $_SESSION['userID'], 'user', $id, 'update', json_encode(['before' => $old_data, 'after' => $new_data]));
+    log_change($_SESSION['userID'], 'user', $id, 'update', json_encode(['before' => $old_data, 'after' => $new_data]));
 
     if (!$result) {
         echo ("A problem occurred");

@@ -12,7 +12,7 @@ if (
 
 if (isset($_GET['userID'])) {
     $userID = intval($_GET['userID']);
-    if (delete_user($conn, $userID)) {
+    if (delete_user($userID)) {
         header("Location: /themobilehour/view/admin_customers.php?success=User deleted successfully.");
         exit();
     } else {
