@@ -36,7 +36,6 @@ if ($order_id) {
     }
     // Log the new order creation
     log_change(
-        $conn,
         $_SESSION['userID'],
         'order',
         $order_id,
