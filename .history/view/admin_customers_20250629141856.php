@@ -93,7 +93,7 @@
             </table>
                 
             <div class="form-group col-md-12 form-centre">
-                <a href="/themobilehour/controller/managecustomers.php?action=add" class="btn btn-info">Add Customer</a>
+                <a href="/themobilehour/controller/managecustomers.php" class="btn btn-info">Add Customer</a>
             </div>
             
         </section>
