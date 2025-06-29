@@ -121,16 +121,6 @@ function get_user_by_id($conn, $id) {
     return $user;
 }
 
-function get_user_by_email($conn, $email) {
-    $sql = "SELECT * FROM user WHERE username = :email LIMIT 1";
-    $stmt = $conn->prepare($sql);
-    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-    $stmt->execute();
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    $stmt->closeCursor();
-    return $user;
-}
-
 // Create a function to delete an existing user
 function delete_user($conn, $userID) {
     $sql = "DELETE FROM user WHERE userID = :userID";
