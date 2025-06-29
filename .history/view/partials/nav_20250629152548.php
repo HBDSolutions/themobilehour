@@ -62,5 +62,3 @@ $current_action = $_GET['action'] ?? null;
         <?php endif; ?>
     </ul>
 </nav>
-
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/view/login.php"); ?>
