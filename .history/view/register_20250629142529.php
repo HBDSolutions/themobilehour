@@ -42,7 +42,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="email">Email:</label>
-                        <input type="text" id="email" name="email" placeholder="Enter user email address (user@example)" pattern="^[a-zA-Z0-9.]+@[a-zA-Z0-9.]+$" title="Username must be in the format xxxxxxx@xxxx (letters, numbers, and dots allowed, no TLD required)." class="form-control" required autocomplete="off" value="" />
+                        <input type="text" id="email" name="email" placeholder="Enter user email address (user@example)" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+$" title="Username must be in the format xxxxxxx@xxxx (letters/numbers only, no dots or TLD)." class="form-control" required autocomplete="off" value="" />
                     </div>
                     <div class="form-group col-md-6">
                         <label for="password">Password:</label>
@@ -52,7 +52,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="shipping_address">Shipping Address:</label>
-                        <input type="text" id="shipping_address" name="shipping_address" placeholder="Start typing your address..." class="form-control" autocomplete="off"/>
+                        <input type="text" id="shipping_address" name="shipping_address" placeholder="Start typing your address..." class="form-control" autocomplete="off" required />
                     </div>
                 </div>
                 <?php if (isset($isAdminAdding) && $isAdminAdding): ?>

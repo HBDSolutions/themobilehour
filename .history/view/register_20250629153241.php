@@ -52,7 +52,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="shipping_address">Shipping Address:</label>
-                        <input type="text" id="shipping_address" name="shipping_address" placeholder="Start typing your address..." class="form-control" autocomplete="off"/>
+                        <input type="text" id="shipping_address" name="shipping_address" placeholder="Start typing your address..." class="form-control" autocomplete="off" required />
                     </div>
                 </div>
                 <?php if (isset($isAdminAdding) && $isAdminAdding): ?>
