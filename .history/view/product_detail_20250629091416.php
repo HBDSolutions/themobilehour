@@ -30,25 +30,7 @@ if (!$product): ?>
                   <h5>Manufacturer: <?= htmlspecialchars($product['manufacturer_Name']) ?></h5>
                   <p class="item-description"><?= htmlspecialchars($product['product_Description']) ?></p>
                   <h5>Product Features:</h5>
-                  <?php
-                  // Check if any feature exists
-                  $has_features = (
-                      !empty($product['weight']) ||
-                      !empty($product['height']) ||
-                      !empty($product['width']) ||
-                      !empty($product['thickness']) ||
-                      !empty($product['operating_system']) ||
-                      !empty($product['screensize']) ||
-                      !empty($product['resolution']) ||
-                      !empty($product['cpu']) ||
-                      !empty($product['ram']) ||
-                      !empty($product['storage']) ||
-                      !empty($product['battery']) ||
-                      !empty($product['rear_camera']) ||
-                      !empty($product['front_camera'])
-                  );
-                  ?>
-                  <?php if ($has_features): ?>
+                  <?php if ($product['featureID']): ?>
                     <div class="row">
                       <div class="col-md-6">
                         <ul>
