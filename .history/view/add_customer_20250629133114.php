@@ -54,7 +54,8 @@ include_once("../model/database.php");
                         </div>
                         <div class="form-group col-md-6">
                             <label for="password">Password:</label>
-                            <input type="password" id="password" name="password" placeholder="Min 8 chars, incl. upper, lower, number, special" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$" title="Password must be at least 8 characters and include uppercase, lowercase, number, and special character." class="form-control" required autocomplete="off" value="" />
+                            <input type="password" id="password" name="password" placeholder="Create a password" class="form-control" required />
+                    
                         </div>
                     </div>
 
