@@ -33,11 +33,6 @@ if (isset($_SESSION['permissionsID']) && $_SESSION['permissionsID'] == 1) {
 
 // If admin/manager, show customer admin page
 if (isset($_SESSION['permissionsID']) && in_array($_SESSION['permissionsID'], [2, 3])) {
-    // FETCH CUSTOMERS FROM DATABASE
-    $sql = "SELECT * FROM user WHERE permissionsID = 1";
-    $stmt = $conn->query($sql);
-    $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
     include($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/view/admin_customers.php");
     exit();
 }

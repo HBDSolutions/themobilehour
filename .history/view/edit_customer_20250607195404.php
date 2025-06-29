@@ -40,7 +40,7 @@ include_once("../model/database.php");
                         $id = $_GET['id'];
                     }
                     else {
-                        header('Location: ../controller/managecustomers.php');
+                        header('Location: ../view/admin_customers.php');
                     }
                 ?>
                 <form class="item-form" enctype="multipart/form-data" action="../controller/editcustomer.php?id=<?php echo $id?>" method="POST">
