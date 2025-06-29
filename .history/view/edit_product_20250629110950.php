@@ -99,7 +99,7 @@ if (!isset($_SESSION['user']) || $_SESSION['permissionsID'] < 2) {
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="description">Enter a description:</label>
-                        <textarea id="description" name="description" class="form-control" rows="4" placeholder="Describe the product in 1000 characters or less"required><?php echo htmlspecialchars($row['product_Description']); ?></textarea>
+                        <textarea id="description" name="description" class="form-control" rows="4" required><?php echo htmlspecialchars($row['product_Description']); ?></textarea>
                     </div>
                 </div>
                 

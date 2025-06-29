@@ -62,7 +62,7 @@ if (!isset($_SESSION['user']) || $_SESSION['permissionsID'] < 2) {
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="product_Name">Edit product name:</label>
-                        <input type="text" id="product_Name" name="product_Name" value="<?php echo htmlspecialchars($row['product_Name']); ?>" placeholder="Enter product name & model" class="form-control" required />
+                        <input type="text" id="product_Name" name="product_Name" value="<?php echo htmlspecialchars($row['product_Name']); ?>" class="form-control" required />
                     </div>
                     <div class="form-group col-md-6">
                         <label for="manufacturer">Edit manufacturer:</label>
@@ -87,19 +87,19 @@ if (!isset($_SESSION['user']) || $_SESSION['permissionsID'] < 2) {
                             <div class="input-group-prepend">
                                 <span class="input-group-text">$</span>
                             </div>
-                            <input type="number" id="price" name="price" value="<?php echo htmlspecialchars($row['price']); ?>" step=".01" placeholder="Enter recommended retail price (AUD)" class="form-control" required />
+                            <input type="number" id="price" name="price" value="<?php echo htmlspecialchars($row['price']); ?>" step=".01" class="form-control" required />
                         </div>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="stock">Edit stock-on-hand total:</label>
-                        <input type="number" id="stock" name="stock" value="<?php echo htmlspecialchars($row['stock_on_hand']); ?>" placeholder="Enter current available stock" class="form-control" required />
+                        <input type="number" id="stock" name="stock" value="<?php echo htmlspecialchars($row['stock_on_hand']); ?>" class="form-control" required />
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="description">Enter a description:</label>
-                        <textarea id="description" name="description" class="form-control" rows="4" placeholder="Describe the product in 1000 characters or less"required><?php echo htmlspecialchars($row['product_Description']); ?></textarea>
+                        <textarea id="description" name="description" class="form-control" rows="4" required><?php echo htmlspecialchars($row['product_Description']); ?></textarea>
                     </div>
                 </div>
                 
@@ -148,43 +148,49 @@ if (!isset($_SESSION['user']) || $_SESSION['permissionsID'] < 2) {
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <label for="resolution">Resolution (pixels)</label>
-                        <input type="text" maxlength="16" name="resolution" id="resolution" class="form-control" placeholder="Enter resolution in pixels (e.g., 1080x2400) (max 16 characters). Leave blank if unknown"
+                        <label for="resolution">Resolution (pixels or WxH)</label>
+                        <input type="text" maxlength="16" name="resolution" id="resolution" class="form-control" placeholder
                             value="<?php echo htmlspecialchars($features['resolution'] ?? $_POST['resolution'] ?? ''); ?>">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="cpu">CPU (chip name)</label>
-                        <input type="text" maxlength="64" name="cpu" id="cpu" class="form-control" placeholder="Enter CPU/chip name (max 64 characters), e.g., Snapdragon 8 Gen 2"
+                        <input type="text" maxlength="64" name="cpu" id="cpu" class="form-control"
                             value="<?php echo htmlspecialchars($features['cpu'] ?? $_POST['cpu'] ?? ''); ?>">
+                        <small class="form-text text-muted">Enter CPU/chip name (max 64 characters), e.g., Snapdragon 8 Gen 2.</small>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="ram">RAM (GB)</label>
-                        <input type="number" min="0" max="65535" name="ram" id="ram" class="form-control" placeholder="Enter RAM in GB (0 – 65535). Leave blank if unknown"
+                        <input type="number" min="0" max="65535" name="ram" id="ram" class="form-control"
                             value="<?php echo htmlspecialchars($features['ram'] ?? $_POST['ram'] ?? ''); ?>">
+                        <small class="form-text text-muted">Enter RAM in GB (0 – 65535). Leave blank if unknown.</small>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="storage">Storage (GB)</label>
-                        <input type="number" min="0" max="65535" name="storage" id="storage" class="form-control" placeholder="Enter storage in GB (0 – 65535). Leave blank if unknown"
+                        <input type="number" min="0" max="65535" name="storage" id="storage" class="form-control"
                             value="<?php echo htmlspecialchars($features['storage'] ?? $_POST['storage'] ?? ''); ?>">
+                        <small class="form-text text-muted">Enter storage in GB (0 – 65535). Leave blank if unknown.</small>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="battery">Battery (mAh)</label>
-                        <input type="number" min="0" max="65535" name="battery" id="battery" class="form-control" placeholder="Enter battery capacity in mAh (0 – 65535). Leave blank if unknown"
+                        <input type="number" min="0" max="65535" name="battery" id="battery" class="form-control"
                             value="<?php echo htmlspecialchars($features['battery'] ?? $_POST['battery'] ?? ''); ?>">
+                        <small class="form-text text-muted">Enter battery capacity in mAh (0 – 65535). Leave blank if unknown.</small>
                     </div>
                     <div class="form-group col-md-4">
                         <label for="rear_camera">Rear Camera (megapixels)</label>
-                        <input type="number" step="0.01" min="0" max="999.99" name="rear_camera" id="rear_camera" class="form-control" placeholder="Enter rear camera resolution in MP (0.00 – 999.99). Leave blank if unknown"
+                        <input type="number" step="0.01" min="0" max="999.99" name="rear_camera" id="rear_camera" class="form-control"
                             value="<?php echo htmlspecialchars($features['rear_camera'] ?? $_POST['rear_camera'] ?? ''); ?>">
+                        <small class="form-text text-muted">Enter rear camera resolution in MP (0.00 – 999.99). Leave blank if unknown.</small>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="front_camera">Front Camera (megapixels)</label>
-                        <input type="number" step="0.01" min="0" max="999.99" name="front_camera" id="front_camera" class="form-control" placeholder="Enter front camera resolution in MP (0.00 – 999.99). Leave blank if unknown"
+                        <input type="number" step="0.01" min="0" max="999.99" name="front_camera" id="front_camera" class="form-control"
                             value="<?php echo htmlspecialchars($features['front_camera'] ?? $_POST['front_camera'] ?? ''); ?>">
+                        <small class="form-text text-muted">Enter front camera resolution in MP (0.00 – 999.99). Leave blank if unknown.</small>
                     </div>
                 </div>
 

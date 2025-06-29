@@ -45,7 +45,7 @@ if (!isset($_SESSION['user']) || $_SESSION['permissionsID'] < 2) {
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="product">Product name:</label>
-                            <input type="text" id="product" name="product_Name" placeholder="Enter product name & model" class="form-control" required />
+                            <input type="text" id="product" name="product_Name" placeholder="Enter product Name" class="form-control" required />
                         </div>
 
                         <div class="form-group col-md-6">
@@ -70,20 +70,20 @@ if (!isset($_SESSION['user']) || $_SESSION['permissionsID'] < 2) {
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">$</span>
                                 </div>
-                                <input type="number" id="price" name="price" placeholder="Enter recommended retail price (AUD)" class="form-control" step=".01" required />
+                                <input type="number" id="price" name="price" placeholder="Enter price" class="form-control" step=".01" required />
                             </div>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="stock">Initial stock-on-hand total:</label>
-                            <input type="number" id="stock" name="stock_on_hand" placeholder="Enter current available stockr" class="form-control" required />
+                            <input type="number" id="stock" name="stock_on_hand" placeholder="Enter initial stock number" class="form-control" required />
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label for="description">Product description:</label>
-                            <textarea placeholder="Describe the product in 1000 characters or less" id="description" name="product_Description" class="form-control" rows="4" required></textarea>
+                            <textarea placeholder="Describe the product in 1000 words or less" id="description" name="product_Description" class="form-control" rows="4" required></textarea>
                         </div>
                     </div>
                

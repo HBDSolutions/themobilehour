@@ -87,19 +87,19 @@ if (!isset($_SESSION['user']) || $_SESSION['permissionsID'] < 2) {
                             <div class="input-group-prepend">
                                 <span class="input-group-text">$</span>
                             </div>
-                            <input type="number" id="price" name="price" value="<?php echo htmlspecialchars($row['price']); ?>" step=".01" placeholder="Enter recommended retail price (AUD)" class="form-control" required />
+                            <input type="number" id="price" name="price" value="<?php echo htmlspecialchars($row['price']); ?>" step=".01" class="form-control" required />
                         </div>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="stock">Edit stock-on-hand total:</label>
-                        <input type="number" id="stock" name="stock" value="<?php echo htmlspecialchars($row['stock_on_hand']); ?>" placeholder="Enter current available stock" class="form-control" required />
+                        <input type="number" id="stock" name="stock" value="<?php echo htmlspecialchars($row['stock_on_hand']); ?>" class="form-control" required />
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="description">Enter a description:</label>
-                        <textarea id="description" name="description" class="form-control" rows="4" placeholder="Describe the product in 1000 characters or less"required><?php echo htmlspecialchars($row['product_Description']); ?></textarea>
+                        <textarea id="description" name="description" class="form-control" rows="4" required><?php echo htmlspecialchars($row['product_Description']); ?></textarea>
                     </div>
                 </div>
                 
