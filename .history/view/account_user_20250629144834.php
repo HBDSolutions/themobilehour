@@ -90,7 +90,7 @@
                         <div class="form-group col-md-12">
                             <label>Shipping Address:</label>
                             <?php if (!empty($edit_mode)): ?>
-                                <input type="text" id="shipping_address" name="shipping_address" value="<?= htmlspecialchars($user['shipping_address']); ?>" class="form-control"/>
+                                <input type="text" id="shipping_address" name="shipping_address" value="<?= htmlspecialchars($user['shipping_address']); ?>" class="form-control" required />
                             <?php else: ?>
                                 <p class="form-control-plaintext"><?= htmlspecialchars($user['shipping_address']); ?></p>
                             <?php endif; ?>
