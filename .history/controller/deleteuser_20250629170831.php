@@ -7,21 +7,21 @@ if (
     !isset($_SESSION['permissions_role']) ||
     $_SESSION['permissions_role'] !== 'Administration Manager'
 ) {
-    header("Location: /themobilehour/controller/managecustomers.php?error=unauthorized");
+    header("Location: /themobilehour/view/admin_customers.php?error=unauthorized");
     exit();
 }
 
 if (isset($_GET['userID'])) {
     $userID = intval($_GET['userID']);
     if (delete_user($conn,$userID)) {
-        header("Location: /themobilehour/controller/managecustomers.php?success=User deleted successfully.");
+        header("Location: /themobilehour/view/admin_customers.php?success=User deleted successfully.");
         exit();
     } else {
-        header("Location: /themobilehour/controller/managecustomers.php?error=Delete failed.");
+        header("Location: /themobilehour/controller/managecustomers.php?success=User deleted successfully.");
         exit();
     }
 } else {
-    header("Location: /themobilehour/controller/managecustomers.php?error=Missing user ID.");
+    header("Location: /themobilehour/view/admin_customers.php?error=Missing user ID.");
     exit();
 }
 ?>
