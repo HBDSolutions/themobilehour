@@ -30,7 +30,7 @@ if ($action === 'adduser' && $permissionsID == 3) {
     include($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/view/add_user.php");
     exit();
 }
-if ($action === 'customers' && in_array($permissionsID, [2, 3])) {
+if ($action === 'customers' && $permissionsID == 3) {
     include($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/view/admin_customers.php");
     exit();
 }
