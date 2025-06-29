@@ -1,4 +1,11 @@
 <?php 
+include_once("../model/database.php");
+session_start();
+if (!isset($_SESSION['user']) || $_SESSION['permissionsID'] < 2) {
+    // Only allow Administrator users
+    header("location:../index.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
