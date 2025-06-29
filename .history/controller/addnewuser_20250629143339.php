@@ -19,8 +19,8 @@ $isActive = 1;
 $errors = [];
 if (!$firstname) $errors[] = "First name is required.";
 if (!$lastname) $errors[] = "Last name is required.";
-if (!$email || !preg_match('/^[a-zA-Z0-9.]+@[a-zA-Z0-9.]+$/', $email)) {
-    $errors[] = "Username must be in the format xxxxxxx@xxxx (letters, numbers, and dots allowed, no TLD required).";
+if (!$email || !preg_match('/^[a-zA-Z0-9]+@[a-zA-Z0-9]+$/', $email)) {
+    $errors[] = "Username must be in the format xxxxxxx@xxxx (letters/numbers only, no dots or TLD).";
 }
 if (!$password) $errors[] = "Password is required.";
 if (!is_valid_password($password)) $errors[] = "Password does not meet requirements.";

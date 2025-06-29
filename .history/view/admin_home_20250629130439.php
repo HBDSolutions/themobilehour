@@ -45,7 +45,9 @@
                 <!-- Manage Products Tile -->
                 <a href="/themobilehour/controller/manageproducts.php" class="admin-tile text-center text-decoration-none">Manage Products</a>
                 <!-- Manage Customers Tile -->
-                <a href="/themobilehour/controller/manageadmin.php?action=customers" class="admin-tile text-center text-decoration-none">Manage Customers</a>
+                <?php if ($permissionsID == 3): ?>
+                    <a href="/themobilehour/controller/manageadmin.php?action=customers" class="admin-tile text-center text-decoration-none">Manage Customers</a>
+                <?php endif; ?>
                 <!-- Manage Orders Tile -->
                 <a href="/themobilehour/controller/manageorders.php" class="admin-tile text-center text-decoration-none">Manage Orders</a>
                 <!-- Change Log Tile -->
