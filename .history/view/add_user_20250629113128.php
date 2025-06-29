@@ -50,7 +50,7 @@ include_once("../model/database.php");
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="email">Email:</label>
-                            <input type="text" id="email" name="email" placeholder="Enter user email address (user@example)" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+$" title="Username must be in the format xxxxxxx@xxxx (letters/numbers only, no dots or TLD)." class="form-control" required autocomplete="off" value="" />
+                            <input type="text" id="email" name="email" placeholder="Enter user email address (user@example)" title="Please enter a valid email address in the format user@example." class="form-control" required autocomplete="off" value="" />
                         </div>
                         <div class="form-group col-md-6">
                             <label for="password">Password:</label>

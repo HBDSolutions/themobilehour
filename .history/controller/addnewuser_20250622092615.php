@@ -32,7 +32,7 @@ if (!empty($errors)) {
     exit();
 }
 
-if (email_exists($conn, $email)) {
+if (email_exists($email)) {
     header('Location: /themobilehour/controller/manageadmin.php?action=adduser&error=Email already registered.');
     exit();
 }
