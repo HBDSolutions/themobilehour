@@ -66,12 +66,14 @@
                 </thead>
                 <tbody>
                     <?php
-                        foreach($customers as $row) {
+                        $sql = "SELECT * FROM user WHERE user.permissionsID = 1"; 
+                        $result = $conn->query($sql);
+                        foreach($result as $row) {
                             echo "<tr>";
-                            echo "<td scope='row'>" . htmlspecialchars($row['firstname']) . "</td>";
-                            echo "<td>" . htmlspecialchars($row['lastname']) . "</td>";
+                            echo "<td scope='row'>" . $row['firstname'] . "</td>";
+                            echo "<td>" . $row['lastname'] . "</td>";
                             echo "<td><a href=\"/themobilehour/controller/edituser.php?id=" . $row['userID'] . "\">" . htmlspecialchars($row['username']) . "</a></td>";
-                            echo "<td>" . htmlspecialchars($row['shipping_address']) . "</td>";
+                            echo "<td>" . $row['shipping_address'] . "</td>";
                             echo "<td><a href=\"/themobilehour/view/edit_customer.php?id=" . $row['userID'] . "\"><i class=\"bi bi-pencil-square\"></i></a></td>";
                             echo "<td><a href=\"/themobilehour/controller/deleteuser.php?userID=" . $row['userID'] . "\" class=\"delete\"><i class=\"bi bi-trash\"></i></a></td>";
                             echo "</tr>";
