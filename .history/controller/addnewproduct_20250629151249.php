@@ -48,26 +48,11 @@ $battery = $_POST['battery'] ?? null;
 $rear_camera = $_POST['rear_camera'] ?? null;
 $front_camera = $_POST['front_camera'] ?? null;
 
-// Insert product first
-$sql = "INSERT INTO products (product_Name, manufacturer_ID, product_Description, stock_on_hand, price, image)
-        VALUES (:product_Name, :manufacturer_ID, :product_Description, :stock_on_hand, :price, :image)";
+// Insert features first
+$sql = "INSERT INTO features (weight, height, width, thickness, operating_system, screensize, resolution, cpu, ram, storage, battery, rear_camera, front_camera)
+        VALUES (:weight, :height, :width, :thickness, :operating_system, :screensize, :resolution, :cpu, :ram, :storage, :battery, :rear_camera, :front_camera)";
 $stmt = $conn->prepare($sql);
 $stmt->execute([
-    ':product_Name' => $product_Name,
-    ':manufacturer_ID' => $manufacturer_ID,
-    ':product_Description' => $product_Description,
-    ':stock_on_hand' => $stock_on_hand,
-    ':price' => $price,
-    ':image' => $image
-]);
-$product_ID = $conn->lastInsertId();
-
-// Insert features next with the new product_ID
-$sql = "INSERT INTO features (product_ID, weight, height, width, thickness, operating_system, screensize, resolution, cpu, ram, storage, battery, rear_camera, front_camera)
-        VALUES (:product_ID, :weight, :height, :width, :thickness, :operating_system, :screensize, :resolution, :cpu, :ram, :storage, :battery, :rear_camera, :front_camera)";
-$stmt = $conn->prepare($sql);
-$stmt->execute([
-    ':product_ID' => $product_ID,
     ':weight' => $weight,
     ':height' => $height,
     ':width' => $width,
@@ -82,7 +67,14 @@ $stmt->execute([
     ':rear_camera' => $rear_camera,
     ':front_camera' => $front_camera
 ]);
+$featureID = $conn->lastInsertId();
 
-header('Location: /themobilehour/controller/manageproducts.php');
-exit();
+// Call the add_product() function and pass the variables, including $featureID
+$result = add_product($conn, $product_Name, $manufacturer_ID, $product_Description, $stock_on_hand, $price, $image, $featureID);
+
+if (!$result) {
+    echo ("A problem occurred");
+} else {
+    header('Location: /themobilehour/controller/manageproducts.php');
+}
 ?>

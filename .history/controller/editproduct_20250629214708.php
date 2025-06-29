@@ -95,11 +95,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt_feat->execute([$id]);
     $features = $stmt_feat->fetch(PDO::FETCH_ASSOC);
 
-    // Fetch manufacturers for dropdown
-    $manufacturers = get_all_manufacturers($conn);
-
-    include($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/view/edit_product.php");
-    exit();
+    SELECT p.product_ID, p.product_Name
+    FROM products p
+    LEFT JOIN features f ON p.product_ID = f.product_ID
+    WHERE f.product_ID IS NULL;
 
     include($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/view/edit_product.php");
     exit();
