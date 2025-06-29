@@ -2,24 +2,9 @@
 include_once("../model/database.php");
 require_once("../model/functions.php");
 
-session_start();
+// the following statement can be used for debugging to output the values passed from the form page and stop processing the page
+//die(var_dump($_POST));
 
-// Optionally, add permission checks for admin/manager here
-if (!isset($_SESSION['permissionsID']) || $_SESSION['permissionsID'] < 2) {
-    header("Location: /themobilehour/index.php");
-    exit();
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    // Fetch manufacturers for the dropdown
-    $stmt = $conn->query("SELECT manufacturer_ID, manufacturer_Name FROM manufacturer");
-    $manufacturers = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    include($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/view/add_product.php");
-    exit();
-}
-
-// POST: Process form submission
 $filedir = 'assets/images/';
 
 // Gather product fields

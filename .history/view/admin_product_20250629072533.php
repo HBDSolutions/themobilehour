@@ -100,7 +100,7 @@
             </table>
 
             <div class="form-group col-md-12 form-centre">
-                <a href="/themobilehour/controller/addnewproduct.php" class="btn btn-info">Add Product</a>
+                <a href="/themobilehour/view/add_product.php" class="btn btn-info">Add Product</a>
             </div>
         </section>
     </main>
