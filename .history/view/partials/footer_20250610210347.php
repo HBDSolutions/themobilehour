@@ -33,7 +33,7 @@
         </div>
       </div>
         <div class="modal-footer d-flex justify-content-center">
-          <div class="signup-section">Not a member yet? <a href="/themobilehour/controller/managecustomers.php?action=add" class="text-info"> Sign Up</a>.</div>
+          <div class="signup-section">Not a member yet? <a href="/themobilehour/view/register.php" class="text-info"> Sign Up</a>.</div>
         </div>
     </div>
   </div>
