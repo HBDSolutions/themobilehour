@@ -28,14 +28,15 @@
       <div class="modal-footer d-flex justify-content-center">
         <div class="signup-section">Not a member yet? <a href="view/register.php" class="text-info"> Sign Up</a>.</div>
       </div>
-      <?php if (!empty($_SESSION['error'])): ?>
-      <script>
-        document.addEventListener("DOMContentLoaded", function() {
-          $('#loginModal').modal('show');
-        });
-      </script>
-      <?php unset($_SESSION['error']); ?>
-      <?php endif; ?>
     </div>
   </div>
 </div>
+
+<?php if (!empty($_SESSION['error'])): ?>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    $('#loginModal').modal('show');
+  });
+</script>
+<?php unset($_SESSION['error']); ?>
+<?php endif; ?>
