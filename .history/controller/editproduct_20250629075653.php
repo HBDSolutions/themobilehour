@@ -1,4 +1,4 @@
-<?php
+<?php 
 include_once("../model/database.php");
 require_once("../model/functions.php");
 
@@ -11,6 +11,7 @@ $id = intval($_GET['id']);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // --- PROCESS FORM SUBMISSION ---
+
     $product_Name = $_POST['product_Name'] ?? '';
     $manufacturer_ID = $_POST['manufacturer'] ?? '';
     $product_Description = $_POST['description'] ?? '';
@@ -47,8 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $rear_camera = $_POST['rear_camera'] ?? null;
     $front_camera = $_POST['front_camera'] ?? null;
 
-    // --- Check if features row exists for this product ---
-    $sql = "SELECT featureID FROM features WHERE product_ID = ?";
+    // --- Fetch featureID for this product ---
+    $sql = "SELECT featureID FROM products WHERE product_ID = ?";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$id]);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -57,19 +58,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($featureID) {
         // Update existing features row
         $sql = "UPDATE features SET weight=?, height=?, width=?, thickness=?, operating_system=?, screensize=?, resolution=?, cpu=?, ram=?, storage=?, battery=?, rear_camera=?, front_camera=?
-                WHERE product_ID=?";
+                WHERE featureID=?";
         $stmt = $conn->prepare($sql);
         $stmt->execute([
-            $weight, $height, $width, $thickness, $operating_system, $screensize, $resolution, $cpu, $ram, $storage, $battery, $rear_camera, $front_camera, $id
+            $weight, $height, $width, $thickness, $operating_system, $screensize, $resolution, $cpu, $ram, $storage, $battery, $rear_camera, $front_camera, $featureID
         ]);
     } else {
-        // Insert new features row with product_ID
-        $sql = "INSERT INTO features (product_ID, weight, height, width, thickness, operating_system, screensize, resolution, cpu, ram, storage, battery, rear_camera, front_camera)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        // Insert new features row
+        $sql = "INSERT INTO features (weight, height, width, thickness, operating_system, screensize, resolution, cpu, ram, storage, battery, rear_camera, front_camera)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->execute([
-            $id, $weight, $height, $width, $thickness, $operating_system, $screensize, $resolution, $cpu, $ram, $storage, $battery, $rear_camera, $front_camera
+            $weight, $height, $width, $thickness, $operating_system, $screensize, $resolution, $cpu, $ram, $storage, $battery, $rear_camera, $front_camera
         ]);
+        $featureID = $conn->lastInsertId();
+
+        // Update product to set new featureID
+        $sql = "UPDATE products SET featureID=? WHERE product_ID=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$featureID, $id]);
     }
 
     // --- Update product ---
@@ -83,19 +90,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } else {
     // --- SHOW THE FORM ---
-    // Fetch product
-    $sql = "SELECT * FROM products WHERE product_ID = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([$id]);
-    $product = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // Fetch features using product_ID
-    $sql_feat = "SELECT * FROM features WHERE product_ID = ?";
-    $stmt_feat = $conn->prepare($sql_feat);
-    $stmt_feat->execute([$id]);
-    $features = $stmt_feat->fetch(PDO::FETCH_ASSOC);
-
-    include($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/view/edit_product.php");
+    // Redirect to the view, passing the product ID
+    header("Location: /themobilehour/view/edit_product.php?id=$id");
     exit();
 }
 ?>

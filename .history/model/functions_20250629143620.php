@@ -268,11 +268,10 @@ function get_all_products($conn) {
 
 // Create a function to fetch a selected product with its features and manufacturer
 function get_product_with_features($conn, $product_id) {
-    $sql = "SELECT p.*, m.manufacturer_Name, 
-                   f.weight, f.height, f.width, f.thickness, f.operating_system, f.screensize, f.resolution, f.cpu, f.ram, f.storage, f.battery, f.rear_camera, f.front_camera
+    $sql = "SELECT p.*, m.manufacturer_Name, f.weight, f.height, f.width, f.thickness, f.operating_system, f.screensize, f.resolution, f.cpu, f.ram, f.storage, f.battery, f.rear_camera, f.front_camera
             FROM products p
             LEFT JOIN manufacturer m ON p.manufacturer_ID = m.manufacturer_ID
-            LEFT JOIN features f ON f.product_ID = p.product_ID
+            LEFT JOIN features f ON p.featureID = f.featureID
             WHERE p.product_ID = :id";
     $stmt = $conn->prepare($sql);
     $stmt->bindValue(':id', $product_id, PDO::PARAM_INT);
