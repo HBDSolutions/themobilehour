@@ -17,13 +17,6 @@ if ($action === 'users' && $permissionsID == 3) {
     exit();
 }
 if ($action === 'adduser' && $permissionsID == 3) {
-    // Fetch Administrator role ID
-    $adminRoleId = null;
-    $sql = "SELECT permissionsID FROM permissions WHERE permissions_role = 'Administrator' LIMIT 1";
-    $stmt = $conn->query($sql);
-    if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        $adminRoleId = $row['permissionsID'];
-    }
     include($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/view/add_user.php");
     exit();
 }
