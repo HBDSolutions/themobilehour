@@ -25,11 +25,11 @@ if ($role === 'Customer') {
         $order['firstname'] = $user['firstname'];
         $order['lastname'] = $user['lastname'];
         $order['username'] = $user['username'];
-        $order['items'] = get_order_items($conn, $order['orderID']);
+        $order['items'] = get_order_items($order['orderID']);
     }
     unset($order);
 } else {
-    $orders = get_all_orders_with_items($conn);
+    $orders = get_all_orders_with_items();
 }
 
 include($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/view/admin_orders.php");

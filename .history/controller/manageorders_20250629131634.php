@@ -29,7 +29,7 @@ if ($role === 'Customer') {
     }
     unset($order);
 } else {
-    $orders = get_all_orders_with_items($conn);
+    $orders = get_all_orders_with_items();
 }
 
 include($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/view/admin_orders.php");
