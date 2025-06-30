@@ -15,10 +15,6 @@ if ($action === 'add' && $product_id > 0) {
     remove_from_cart($product_id);
     header("Location: managecart.php");
     exit();
-} elseif ($action === 'clear') {
-    unset($_SESSION['cart']);
-    header("Location: managecart.php");
-    exit();
 }
 
 // --- Display the cart ---

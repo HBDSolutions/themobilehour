@@ -15,10 +15,6 @@ if ($action === 'add' && $product_id > 0) {
     remove_from_cart($product_id);
     header("Location: managecart.php");
     exit();
-} elseif ($action === 'clear') {
-    unset($_SESSION['cart']);
-    header("Location: managecart.php");
-    exit();
 }
 
 // --- Display the cart ---
@@ -34,10 +30,6 @@ foreach ($cart_items as $item) {
         $products[] = $product;
     }
 }
-
-// Calculate GST and purchase total for the view
-$gst = $cart_total * 0.1;
-$purchase_total = $cart_total + $gst;
 
 // Pass all data to the view
 include("../view/cart.php");

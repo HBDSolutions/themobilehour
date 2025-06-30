@@ -39,7 +39,7 @@
                                 <td><?= $order['order_date'] ?></td>
                                 <td>
                                     <?php if ($can_edit_status): ?>
-                                        <form method="post" action="/themobilehour/controller/manageorders.php" class="d-inline">
+                                        <form method="post" action="../controller/updateorderstatus.php" class="d-inline">
                                             <input type="hidden" name="orderID" value="<?= $order['orderID'] ?>">
                                             <select name="order_status" class="form-control form-control-sm d-inline" style="width:auto;display:inline-block;"
                                                 onchange="this.form.submit()">

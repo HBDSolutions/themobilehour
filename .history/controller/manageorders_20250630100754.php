@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderID'], $_POST['or
         $stmt->bindValue(':orderID', $orderID, PDO::PARAM_INT);
         $stmt->execute();
     }
+    // Redirect to avoid form resubmission
     header("Location: manageorders.php");
     exit();
 }
@@ -30,7 +31,7 @@ $role = $_SESSION['permissions_role'] ?? null;
 $permissionsID = $_SESSION['permissionsID'] ?? 0;
 
 // Status options for dropdown
-$statuses = ['Pending', 'Paid', 'Despatched', 'Delivered', 'Cancelled'];
+$statuses = ['Pending', 'Packaged', 'Despatched', 'Delivered'];
 // Only permissionsID 2 and 3 can edit status
 $can_edit_status = in_array($permissionsID, [2, 3]);
 
