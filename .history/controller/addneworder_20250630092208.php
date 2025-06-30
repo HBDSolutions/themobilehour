@@ -31,12 +31,11 @@ if ($order_id) {
     foreach ($cart_items as $item) {
         $product = get_product_by_id($conn, $item['product_ID']);
         if ($product) {
-            add_order_item($conn, $order_id, $item['product_ID'], $item['quantity'], $product['price']);
+            add_order_item($order_id, $item['product_ID'], $item['quantity'], $product['price']);
         }
     }
     // Log the new order creation
     log_change(
-        $conn,
         $_SESSION['userID'],
         'order',
         $order_id,

@@ -38,23 +38,16 @@
                                 <td><?= $order['orderID'] ?></td>
                                 <td><?= $order['order_date'] ?></td>
                                 <td>
-                                    <?php if ($can_edit_status): ?>
-                                        <form method="post" action="/themobilehour/controller/manageorders.php" class="d-inline">
-                                            <input type="hidden" name="orderID" value="<?= $order['orderID'] ?>">
-                                            <select name="order_status" class="form-control form-control-sm d-inline" style="width:auto;display:inline-block;"
-                                                onchange="this.form.submit()">
-                                                <?php foreach ($statuses as $statusOption): ?>
-                                                    <option value="<?= $statusOption ?>" <?= $order['order_status'] === $statusOption ? 'selected' : '' ?>>
-                                                        <?= $statusOption ?>
-                                                    </option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </form>
-                                    <?php else: ?>
-                                        <span class="badge badge-secondary">
-                                            <?= htmlspecialchars($order['order_status']) ?>
-                                        </span>
-                                    <?php endif; ?>
+                                    <?php
+                                        $status = strtolower($order['order_status']);
+                                        $badge = 'secondary';
+                                        if ($status === 'processing') $badge = 'info';
+                                        elseif ($status === 'completed') $badge = 'success';
+                                        elseif ($status === 'cancelled') $badge = 'danger';
+                                    ?>
+                                    <span class="badge badge-<?= $badge ?>">
+                                        <?= htmlspecialchars($order['order_status']) ?>
+                                    </span>
                                 </td>
                                 <td><?= isset($order['firstname']) ? htmlspecialchars($order['firstname'] . ' ' . $order['lastname']) : '' ?></td>
                                 <td><?= isset($order['username']) ? htmlspecialchars($order['username']) : '' ?></td>
@@ -95,6 +88,7 @@
                     </tbody>
                 </table>
             </div>
+
         </section>
     </main>
 
@@ -102,5 +96,6 @@
     
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+
 </body>
 </html>

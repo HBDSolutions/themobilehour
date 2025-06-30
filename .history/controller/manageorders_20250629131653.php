@@ -3,20 +3,6 @@ session_start();
 require_once($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/model/database.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/model/functions.php");
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['orderID'], $_POST['order_status'])) {
-    // Only allow if user has permission
-    if (in_array($_SESSION['permissionsID'] ?? 0, [2, 3])) {
-        $orderID = intval($_POST['orderID']);
-        $order_status = $_POST['order_status'];
-        $stmt = $conn->prepare("UPDATE orders SET order_status = :status WHERE orderID = :orderID");
-        $stmt->bindValue(':status', $order_status);
-        $stmt->bindValue(':orderID', $orderID, PDO::PARAM_INT);
-        $stmt->execute();
-    }
-    header("Location: manageorders.php");
-    exit();
-}
-
 // Get the userID from session or GET
 $userID = $_SESSION['userID'] ?? $_GET['userID'] ?? null;
 
@@ -27,12 +13,6 @@ if (!$userID) {
 }
 
 $role = $_SESSION['permissions_role'] ?? null;
-$permissionsID = $_SESSION['permissionsID'] ?? 0;
-
-// Status options for dropdown
-$statuses = ['Pending', 'Paid', 'Despatched', 'Delivered', 'Cancelled'];
-// Only permissionsID 2 and 3 can edit status
-$can_edit_status = in_array($permissionsID, [2, 3]);
 
 if ($role === 'Customer') {
     $orders = get_orders_by_user($conn, $userID);
@@ -50,11 +30,8 @@ if ($role === 'Customer') {
     unset($order);
 } else {
     $orders = get_all_orders_with_items($conn);
-    // Only show active orders (not delivered)
-    $orders = array_filter($orders, function($order) {
-        return $order['order_status'] !== 'Delivered';
-    });
 }
 
 include($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/view/admin_orders.php");
+
 ?>
