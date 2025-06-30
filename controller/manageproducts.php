@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/model/database.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/model/functions.php");
 
 $action = $_GET['action'] ?? null;
@@ -9,8 +10,14 @@ $min_price = $_GET['min_price'] ?? null;
 $max_price = $_GET['max_price'] ?? null;
 $search = $_GET['search'] ?? null;
 
-$manufacturers = get_all_manufacturers();
-$products = get_filtered_products($manufacturer_ID, $min_price, $max_price, $search);
+$manufacturers = get_all_manufacturers($conn);
+$products = get_filtered_products($conn, $manufacturer_ID, $min_price, $max_price, $search);
+
+// Add userHasOrders logic
+$userHasOrders = false;
+if (isset($_SESSION['userID'])) {
+    $userHasOrders = user_has_orders($conn, $_SESSION['userID']);
+}
 
 if ($action === 'public') {
     // Public products page (no login required)

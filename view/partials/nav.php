@@ -23,21 +23,7 @@ $current_action = $_GET['action'] ?? null;
                 <a href="/themobilehour/controller/edituser.php?id=<?= $_SESSION['userID'] ?>"
                    class="<?= $current == 'edituser.php' ? 'active' : '' ?>">My Account</a>
             </li>
-            <?php
-                require_once($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/model/functions.php");
-                $hasOrders = false;
-                if (function_exists('user_has_orders')) {
-                    $hasOrders = user_has_orders($_SESSION['userID']);
-                } else {
-                    global $conn;
-                    $stmt = $conn->prepare("SELECT COUNT(*) FROM orders WHERE userID = :userID");
-                    $stmt->bindValue(':userID', $_SESSION['userID']);
-                    $stmt->execute();
-                    $hasOrders = $stmt->fetchColumn() > 0;
-                }
-            ?>
-
-            <?php if ($hasOrders): ?>
+            <?php if (isset($userHasOrders) && $userHasOrders): ?>
                 <li>
                     <a href="/themobilehour/controller/manageorders.php?userID=<?= $_SESSION['userID'] ?>"
                        class="<?= $current == 'manageorders.php' ? 'active' : '' ?>">My Orders</a>
@@ -56,8 +42,7 @@ $current_action = $_GET['action'] ?? null;
         <?php endif; ?>
 
         <li>
-            <a href="/themobilehour/view/cart.php"
-               class="<?= $current == 'cart.php' ? 'active' : '' ?>">Cart</a>
+            <a href="/themobilehour/controller/managecart.php" class="<?= $current == 'cart.php' ? 'active' : '' ?>">Cart</a>
         </li>
 
         <?php if (isset($_SESSION['user'])): ?>
@@ -72,8 +57,7 @@ $current_action = $_GET['action'] ?? null;
         
         <?php if (!isset($_SESSION['userID'])): ?>
             <li>
-                <a href="/themobilehour/view/register.php"
-                   class="<?= $current == 'register.php' ? 'active' : '' ?>">Register</a>
+                <a href="/themobilehour/controller/managecustomers.php?action=add" class="<?= $current == 'register.php' ? 'active' : '' ?>">Register</a>
             </li>
         <?php endif; ?>
     </ul>

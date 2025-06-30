@@ -33,28 +33,28 @@ include_once("../model/database.php");
         
         <main>
             <section>
-                <!-- New admin user form. Ensure the enctype is included to permit file upload -->
+                <!-- New admin user form -->
                 <h1 class="first_row">Add New Admin User</h1>
                 <form class="item-form" enctype="multipart/form-data" action="../controller/addnewuser.php" method="POST">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="firstname">First name:</label>
-                            <input type="text" id="firstname" name="firstname" placeholder="Enter your first name" class="form-control" required />
+                            <input type="text" id="firstname" name="firstname" placeholder="Enter user first name" class="form-control" required />
                         </div>
                         <div class="form-group col-md-6">
                             <label for="lastname">Last name:</label>
-                            <input type="text" id="lastname" name="lastname" placeholder="Enter your last name" class="form-control" required />
+                            <input type="text" id="lastname" name="lastname" placeholder="Enter user last name" class="form-control" required />
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="email">Email:</label>
-                            <input type="text" id="email" name="email" placeholder="Enter your email address" class="form-control" required autocomplete="off" value="" />
+                            <input type="text" id="email" name="email" placeholder="Enter user email address (user@example)" pattern="^[a-zA-Z0-9]+@[a-zA-Z0-9]+$" title="Username must be in the format xxxxxxx@xxxx (letters/numbers only, no dots or TLD)." class="form-control" required autocomplete="off" value="" />
                         </div>
                         <div class="form-group col-md-6">
                             <label for="password">Password:</label>
-                            <input type="password" id="password" name="password" placeholder="Create a password" class="form-control" required autocomplete="off" value="" />
+                            <input type="password" id="password" name="password" placeholder="Min 8 chars, incl. upper, lower, number, special" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$" title="Password must be at least 8 characters and include uppercase, lowercase, number, and special character." class="form-control" required autocomplete="off" value="" />
                         </div>
                     </div>
 
@@ -63,11 +63,11 @@ include_once("../model/database.php");
                             <label for="permissionsID">User Role:</label>
                             <select id="permissionsID" name="permissionsID" class="form-control" required>
                                 <?php
-                                    // Get all roles from the permissions table
                                     $rolesSql = "SELECT permissionsID, permissions_role FROM permissions";
                                     $rolesStmt = $conn->query($rolesSql);
                                     foreach ($rolesStmt as $role) {
-                                        echo "<option value='" . $role['permissionsID'] . "'>" . htmlspecialchars($role['permissions_role']) . "</option>";
+                                        $selected = (isset($adminRoleId) && $role['permissionsID'] == $adminRoleId) ? 'selected' : '';
+                                        echo "<option value='" . $role['permissionsID'] . "' $selected>" . htmlspecialchars($role['permissions_role']) . "</option>";
                                     }
                                 ?>
                             </select>

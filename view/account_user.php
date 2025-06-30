@@ -39,26 +39,39 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="firstname">First name:</label>
-                            <p class="form-control-plaintext"><?= htmlspecialchars($user['firstname']); ?></p>
+                            <?php if (!empty($edit_mode)): ?>
+                                <input type="text" id="firstname" name="firstname" value="<?= htmlspecialchars($user['firstname']); ?>" class="form-control" required />
+                            <?php else: ?>
+                                <p class="form-control-plaintext"><?= htmlspecialchars($user['firstname']); ?></p>
+                            <?php endif; ?>
                         </div>
-                        
                         <div class="form-group col-md-6">
                             <label for="lastname">Last name:</label>
-                            <p class="form-control-plaintext"><?= htmlspecialchars($user['lastname']); ?></p>
+                            <?php if (!empty($edit_mode)): ?>
+                                <input type="text" id="lastname" name="lastname" value="<?= htmlspecialchars($user['lastname']); ?>" class="form-control" required />
+                            <?php else: ?>
+                                <p class="form-control-plaintext"><?= htmlspecialchars($user['lastname']); ?></p>
+                            <?php endif; ?>
+                        </div>
                     </div>
-
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="username">Email address:</label>
-                            <p class="form-control-plaintext"><?= htmlspecialchars($user['username']); ?></p>
+                            <?php if (!empty($edit_mode)): ?>
+                                <input type="text" id="username" name="username" value="<?= htmlspecialchars($user['username']); ?>" class="form-control" required />
+                            <?php else: ?>
+                                <p class="form-control-plaintext"><?= htmlspecialchars($user['username']); ?></p>
+                            <?php endif; ?>
                         </div>
-
                         <div class="form-group col-md-6">
                             <label for="password">Password:</label>
-                            <p class="form-control-plaintext">********</p>
+                            <?php if (!empty($edit_mode)): ?>
+                                <input type="password" id="password" name="password" value="" class="form-control" placeholder="Enter new password or leave blank" />
+                            <?php else: ?>
+                                <p class="form-control-plaintext">********</p>
+                            <?php endif; ?>
                         </div>
                     </div>
-
                     <div class="form-row">
                         <?php if (!$hideRoleAndStatus): ?>
                         <div class="form-group col-md-6">
@@ -73,24 +86,27 @@
                         </div>
                         <?php endif; ?>
                     </div>
-
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label>Shipping Address:</label>
-                            <p class="form-control-plaintext"><?= htmlspecialchars($user['shipping_address']); ?></p>
+                            <?php if (!empty($edit_mode)): ?>
+                                <input type="text" id="shipping_address" name="shipping_address" value="<?= htmlspecialchars($user['shipping_address']); ?>" class="form-control"/>
+                            <?php else: ?>
+                                <p class="form-control-plaintext"><?= htmlspecialchars($user['shipping_address']); ?></p>
+                            <?php endif; ?>
                         </div>
                     </div>
-                    
                     <div class="form-group col-md-12 form-centre">
-                        <a href="/themobilehour/view/edit_user.php?id=<?= $user['userID']; ?>" class="btn btn-info">Edit Account</a>
+                        <?php if (!empty($edit_mode)): ?>
+                            <button class="btn btn-info" type="submit">Save Changes</button>
+                            <a href="/themobilehour/controller/managecustomers.php" class="btn btn-secondary">Cancel</a>
+                        <?php else: ?>
+                            <a href="/themobilehour/controller/edituser.php?id=<?= $user['userID']; ?>" class="btn btn-info">Edit Account</a>
+                        <?php endif; ?>
                     </div>
-                    <?php
-                    
-                    ?>
                 </form>
             </section>
         </main>
         <?php include_once "partials/footer.php" ?>
     </body>
-
 </html>

@@ -12,28 +12,29 @@ if (isset($_GET['id'])) {
         $stmt->execute();
         $product_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $result = delete_product($id);
+        // FIX: Pass both $conn and $id to delete_product
+        $result = delete_product($conn, $id);
 
         if ($result) {
-            // Log the deletion
-            log_change($_SESSION['userID'], 'product', $id, 'delete', json_encode(['deleted' => $product_data]));
-            header('Location: /themobilehour/view/admin_product.php?success=Product deleted successfully.');
+            // FIX: Pass $conn as the first argument to log_change
+            log_change($conn, $_SESSION['userID'], 'product', $id, 'delete', json_encode(['deleted' => $product_data]));
+            header('Location: /themobilehour/controller/manageproducts.php?success=Product deleted successfully.');
             exit();
         } else {
-            header('Location: /themobilehour/view/admin_product.php?error=Failed to delete product.');
+            header('Location: /themobilehour/controller/manageproducts.php?error=Failed to delete product.');
             exit();
         }
     } catch (PDOException $e) {
         if ($e->getCode() == '23000') {
-            header('Location: /themobilehour/view/admin_product.php?error=Cannot delete product: it is referenced in existing orders.');
+            header('Location: /themobilehour/controller/manageproducts.php?error=Cannot delete product: it is referenced in existing orders.');
             exit();
         } else {
-            header('Location: /themobilehour/view/admin_product.php?error=Database error: ' . urlencode($e->getMessage()));
+            header('Location: /themobilehour/controller/manageproducts.php?error=Database error: ' . urlencode($e->getMessage()));
             exit();
         }
     }
 } else {
-    header('Location: /themobilehour/view/admin_product.php?error=No product ID specified.');
+    header('Location: /themobilehour/controller/manageproducts.php?error=No product ID specified.');
     exit();
 }
 ?>

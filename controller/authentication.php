@@ -11,7 +11,7 @@ $username = $_POST["username"];
 $password = $_POST["password"]; 
 
 // Call the login() function (it should use password_verify internally)
-$login_success = login($username, $password);
+$login_success = login($conn, $username, $password);
 
 if ($login_success) { 
     // Fetch the user's info and permissions

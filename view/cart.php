@@ -1,15 +1,4 @@
 <?php
-session_start();
-require_once("../model/database.php");
-require_once("../model/functions.php");
-
-// Initialise cart array if empty
-if (!isset($_SESSION['cart'])) {
-    $_SESSION['cart'] = [];
-}
-
-$cart_items = $_SESSION['cart'];
-$cart_total = 0;
 ?>
 
 <!DOCTYPE html>

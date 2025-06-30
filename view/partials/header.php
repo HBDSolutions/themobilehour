@@ -16,3 +16,5 @@ if (session_status() === PHP_SESSION_NONE) {
         }
     </script>
 </header>
+
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/view/login.php"); ?>

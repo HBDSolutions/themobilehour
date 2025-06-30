@@ -11,7 +11,10 @@
           <h4>Account Login</h4>
         </div>
         <div class="d-flex flex-column text-center">
-          <form action="controller/authentication.php" method="POST">
+          <?php if (!empty($_SESSION['error'])): ?>
+            <div class="alert alert-danger"><?= htmlspecialchars($_SESSION['error']); ?></div>
+          <?php endif; ?>          
+          <form action="/themobilehour/controller/authentication.php" method="POST">
             <div class="form-group">
               <input type="email" class="form-control" id="username" name="username" placeholder="Your email address...">
             </div>
@@ -23,8 +26,16 @@
         </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <div class="signup-section">Not a member yet? <a href="view/register.php" class="text-info"> Sign Up</a>.</div>
+        <div class="signup-section">Not a member yet? <a href="/themobilehour/controller/addnewuser.php" class="text-info">Sign Up</a>.</div>
       </div>
+      <?php if (!empty($_SESSION['error'])): ?>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          $('#loginModal').modal('show');
+        });
+      </script>
+      <?php unset($_SESSION['error']); ?>
+      <?php endif; ?>
     </div>
   </div>
 </div>

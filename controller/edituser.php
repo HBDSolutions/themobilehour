@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $isActive = $_POST['isActive'] ?? $old_data['isActive'];
 
     // Update user
-    $result = update_user($id, $firstname, $lastname, $username, $password, $shipping_address, $permissionsID, $isActive);
+    $result = update_user($conn, $id, $firstname, $lastname, $username, $password, $shipping_address, $permissionsID, $isActive);
 
     // Fetch new data after update
     $stmt = $conn->prepare("SELECT * FROM user WHERE userID = :id");
@@ -36,22 +36,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $new_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // Log the change
-    log_change($_SESSION['userID'], 'user', $id, 'update', json_encode(['before' => $old_data, 'after' => $new_data]));
+    log_change($conn, $_SESSION['userID'], 'user', $id, 'update', json_encode(['before' => $old_data, 'after' => $new_data]));
 
     if (!$result) {
         echo ("A problem occurred");
         exit();
     } else {
-        // Redirect based on user role (MVC compliant, absolute references)
-        if (isset($_SESSION['permissionsID']) && $_SESSION['permissionsID'] == 1) {
-            // Customer: redirect to home controller
-            header('Location: /themobilehour/controller/home.php?success=Account updated successfully.');
-            exit();
-        } else {
-            // Admin/staff: redirect to admin users page
-            header('Location: /themobilehour/view/admin_users.php?success=User updated successfully.');
+        // Admin manager edits admin user
+        if (isset($_SESSION['permissionsID']) && $_SESSION['permissionsID'] == 3 && $permissionsID != 1) {
+            header('Location: /themobilehour/controller/manageadmin.php?action=users&success=User updated successfully.');
             exit();
         }
+        // Admin manager or admin edits customer
+        if (isset($_SESSION['permissionsID']) && in_array($_SESSION['permissionsID'], [2, 3]) && $permissionsID == 1) {
+            header('Location: /themobilehour/controller/manageadmin.php?action=customers&success=Customer updated successfully.');
+            exit();
+        }
+        // Customer edits their own account
+        header('Location: /themobilehour/controller/managecustomers.php?success=Account updated successfully.');
+        exit();
     }
 }
 
@@ -70,6 +73,7 @@ $stmt->closeCursor();
 // Set variables for the view
 $is_own_account = (isset($_SESSION['userID']) && $_SESSION['userID'] == $id);
 $hideRoleAndStatus = ($is_own_account && isset($user['permissions_role']) && $user['permissions_role'] === 'Customer');
+$edit_mode = true;
 
 if ($is_own_account) {
     $accountTitle = 'My Account';

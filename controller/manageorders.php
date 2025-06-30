@@ -15,7 +15,7 @@ if (!$userID) {
 $role = $_SESSION['permissions_role'] ?? null;
 
 if ($role === 'Customer') {
-    $orders = get_orders_by_user($userID);
+    $orders = get_orders_by_user($conn, $userID);
     $stmt = $conn->prepare("SELECT firstname, lastname, username FROM user WHERE userID = :userID");
     $stmt->bindValue(':userID', $userID, PDO::PARAM_INT);
     $stmt->execute();
@@ -25,11 +25,11 @@ if ($role === 'Customer') {
         $order['firstname'] = $user['firstname'];
         $order['lastname'] = $user['lastname'];
         $order['username'] = $user['username'];
-        $order['items'] = get_order_items($order['orderID']);
+        $order['items'] = get_order_items($conn, $order['orderID']);
     }
     unset($order);
 } else {
-    $orders = get_all_orders_with_items();
+    $orders = get_all_orders_with_items($conn);
 }
 
 include($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/view/admin_orders.php");

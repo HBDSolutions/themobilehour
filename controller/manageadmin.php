@@ -10,6 +10,9 @@ if (!isset($_SESSION['user']) || !in_array($_SESSION['permissionsID'], [2, 3])) 
 
 $permissionsID = $_SESSION['permissionsID'];
 $action = $_GET['action'] ?? null;
+$userRole = ($permissionsID == 3) ? "Administration Manager" : (($permissionsID == 2) ? "Administrator" : "Unknown");
+$username = $_SESSION["user"] ?? "";
+$successMsg = $_SESSION["success"] ?? "";
 
 // Only Admin Manager can access User Admin page
 if ($action === 'users' && $permissionsID == 3) {
@@ -17,12 +20,26 @@ if ($action === 'users' && $permissionsID == 3) {
     exit();
 }
 if ($action === 'adduser' && $permissionsID == 3) {
+    // Fetch Administrator role ID
+    $adminRoleId = null;
+    $sql = "SELECT permissionsID FROM permissions WHERE permissions_role = 'Administrator' LIMIT 1";
+    $stmt = $conn->query($sql);
+    if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $adminRoleId = $row['permissionsID'];
+    }
     include($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/view/add_user.php");
     exit();
 }
+if ($action === 'customers' && in_array($permissionsID, [2, 3])) {
+    $sql = "SELECT * FROM user WHERE user.permissionsID = 1";
+    $stmt = $conn->query($sql);
+    $customers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    include($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/view/admin_customers.php");
+    exit();
+}
 
-// If action is users/adduser but not permissionsID 3, redirect to home
-if (in_array($action, ['users', 'adduser']) && $permissionsID != 3) {
+// If action is users/adduser/customers but not permissionsID 3, redirect to home
+if (in_array($action, ['users', 'adduser', 'customers']) && $permissionsID != 3) {
     header("Location: /themobilehour/controller/home.php");
     exit();
 }

@@ -32,20 +32,10 @@
     <main>
         <section>
             <h1 class="first_row">Administration Home</h1>
-            <h5>User Role: 
-                <?php
-                    if ($permissionsID == 3) {
-                        echo "Administration Manager";
-                    } elseif ($permissionsID == 2) {
-                        echo "Administrator";
-                    } else {
-                        echo "Unknown";
-                    }
-                ?>
-            </h5>
+            <h5>User Role: <?= htmlspecialchars($userRole) ?></h5>
             <p>
-                Hi <?php echo isset($_SESSION["success"]) ? htmlspecialchars($_SESSION["success"]) : ''; ?>.
-                You have successfully logged in as <?php echo htmlspecialchars($_SESSION["user"]); ?>
+                Hi <?= htmlspecialchars($successMsg) ?>.
+                You have successfully logged in as <?= htmlspecialchars($username) ?>
             </p>
             <div class="admin-tile-container">
                 <!-- Manage Users Tile -->
@@ -55,7 +45,7 @@
                 <!-- Manage Products Tile -->
                 <a href="/themobilehour/controller/manageproducts.php" class="admin-tile text-center text-decoration-none">Manage Products</a>
                 <!-- Manage Customers Tile -->
-                <a href="/themobilehour/view/admin_customers.php" class="admin-tile text-center text-decoration-none">Manage Customers</a>
+                <a href="/themobilehour/controller/manageadmin.php?action=customers" class="admin-tile text-center text-decoration-none">Manage Customers</a>
                 <!-- Manage Orders Tile -->
                 <a href="/themobilehour/controller/manageorders.php" class="admin-tile text-center text-decoration-none">Manage Orders</a>
                 <!-- Change Log Tile -->

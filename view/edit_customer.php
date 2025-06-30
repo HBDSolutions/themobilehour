@@ -40,7 +40,7 @@ include_once("../model/database.php");
                         $id = $_GET['id'];
                     }
                     else {
-                        header('Location: ../view/admin_customers.php');
+                        header('Location: ../controller/managecustomers.php');
                     }
                 ?>
                 <form class="item-form" enctype="multipart/form-data" action="../controller/editcustomer.php?id=<?php echo $id?>" method="POST">
@@ -77,7 +77,7 @@ include_once("../model/database.php");
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label for="shipping_address">Shipping Address:</label>
-                            <input type="text" id="shipping_address" name="shipping_address" value="<?php echo $row['shipping_address']; ?>" class="form-control" autocomplete="off" required />
+                            <input type="text" id="shipping_address" name="shipping_address" value="<?php echo $row['shipping_address']; ?>" class="form-control" autocomplete="off"/>
                         </div>
                     </div>
 

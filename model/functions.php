@@ -121,6 +121,16 @@ function get_user_by_id($conn, $id) {
     return $user;
 }
 
+function get_user_by_email($conn, $email) {
+    $sql = "SELECT * FROM user WHERE username = :email LIMIT 1";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+    $stmt->execute();
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $user;
+}
+
 // Create a function to delete an existing user
 function delete_user($conn, $userID) {
     $sql = "DELETE FROM user WHERE userID = :userID";
@@ -136,7 +146,7 @@ function delete_user($conn, $userID) {
 // PRODUCT MANAGEMENT FUNCTIONS
 
 //create a function to add a new product 
-function add_product($conn, $product_Name, $manufacturer_ID, $product_Description, $stock_on_hand, $price, $image) {
+function add_product($conn, $product_Name, $manufacturer_ID, $product_Description, $stock_on_hand, $price, $image, $featureID) {
     $uploaddir = '../assets/images/';
     $uploadfile = $uploaddir . basename($image);
 
@@ -147,8 +157,8 @@ function add_product($conn, $product_Name, $manufacturer_ID, $product_Descriptio
         move_uploaded_file($_FILES['image']['tmp_name'], $uploadfile);
     }
 
-    $sql = "INSERT INTO products (product_Name, manufacturer_ID, product_Description, stock_on_hand, price, image) 
-            VALUES (:product_Name, :manufacturer_ID, :product_Description, :stock_on_hand, :price, :image)"; 
+    $sql = "INSERT INTO products (product_Name, manufacturer_ID, product_Description, stock_on_hand, price, image, featureID) 
+            VALUES (:product_Name, :manufacturer_ID, :product_Description, :stock_on_hand, :price, :image, :featureID)"; 
     $statement = $conn->prepare($sql); 
     $statement->bindValue(':product_Name', $product_Name); 
     $statement->bindValue(':manufacturer_ID', $manufacturer_ID);
@@ -156,6 +166,7 @@ function add_product($conn, $product_Name, $manufacturer_ID, $product_Descriptio
     $statement->bindValue(':stock_on_hand', $stock_on_hand);
     $statement->bindValue(':price', $price);
     $statement->bindValue(':image', $image);
+    $statement->bindValue(':featureID', $featureID, PDO::PARAM_INT);
     $result = $statement->execute();
     $statement->closeCursor();
     return $result; 
@@ -239,7 +250,7 @@ function get_filtered_products($conn, $manufacturer_ID = null, $min_price = null
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Create functions to retrieve products
+// Create functions to fetch products
 function get_product_by_id($conn, $product_id) {
     $sql = "SELECT * FROM products WHERE product_ID = :id";
     $stmt = $conn->prepare($sql);
@@ -255,6 +266,21 @@ function get_all_products($conn) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+// Create a function to fetch a selected product with its features and manufacturer
+function get_product_with_features($conn, $product_id) {
+    $sql = "SELECT p.*, m.manufacturer_Name, 
+                   f.weight, f.height, f.width, f.thickness, f.operating_system, f.screensize, f.resolution, f.cpu, f.ram, f.storage, f.battery, f.rear_camera, f.front_camera
+            FROM products p
+            LEFT JOIN manufacturer m ON p.manufacturer_ID = m.manufacturer_ID
+            LEFT JOIN features f ON f.product_ID = p.product_ID
+            WHERE p.product_ID = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindValue(':id', $product_id, PDO::PARAM_INT);
+    $stmt->execute();
+    $product = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $product;
+}
 
 
 
@@ -361,6 +387,15 @@ function get_orders_by_user($conn, $userID) {
     return $orders;
 }
 
+function user_has_orders($conn, $userID) {
+    $sql = "SELECT COUNT(*) FROM orders WHERE userID = :userID";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindValue(':userID', $userID, PDO::PARAM_INT);
+    $stmt->execute();
+    $count = $stmt->fetchColumn();
+    $stmt->closeCursor();
+    return $count > 0;
+}
 
 
 
