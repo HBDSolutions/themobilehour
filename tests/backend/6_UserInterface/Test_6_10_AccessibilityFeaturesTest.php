@@ -40,7 +40,7 @@ class Test_6_10_AccessibilityFeaturesTest extends TestCase
             // Inject axe-core for accessibility checking
             $axe = file_get_contents(__DIR__ . '/axe.min.js'); // Download axe.min.js for test env
             $client->executeScript($axe);
-            $results = $client->executeScript('return await axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa"] } });');
+            $results = $client->executeScript('return await axe.run(document, { runOnly: { type: "tag", values: ["wcag22a", "wcag22aa"] } });');
 
             // Only allow minor or no violations
             $violations = $results['violations'];
