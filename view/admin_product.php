@@ -1,5 +1,11 @@
 <?php 
-
+// Ensure required variables are set
+if (!isset($manufacturers)) {
+    $manufacturers = [];
+}
+if (!isset($products)) {
+    $products = [];
+}
 ?>
 
 <!DOCTYPE html>
