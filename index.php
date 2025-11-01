@@ -4,6 +4,11 @@ if (!isset($manufacturers) || !isset($specials)) {
     require_once($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/model/database.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . "/themobilehour/model/functions.php");
     
+    // Verify database connection
+    if (!isset($conn)) {
+        die("Database connection failed");
+    }
+    
     // Fetch manufacturers for the filter
     $manufacturers = get_all_manufacturers($conn);
     
