@@ -26,6 +26,13 @@
 <body>
     <?php include_once "partials/header.php" ?>
     <main>
+        <?php if (isset($_GET['error'])): ?>
+            <div class="alert alert-danger"><?= htmlspecialchars($_GET['error']) ?></div>
+        <?php endif; ?>
+        <?php if (isset($_GET['success'])): ?>
+            <div class="alert alert-success"><?= htmlspecialchars($_GET['success']) ?></div>
+        <?php endif; ?>
+        
         <section>
             <h1 class="first_row"><?= isset($registerTitle) ? htmlspecialchars($registerTitle) : "Customer Registration" ?></h1>
             <form action="/themobilehour/controller/addnewuser.php" method="POST">

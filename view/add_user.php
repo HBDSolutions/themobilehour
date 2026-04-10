@@ -32,6 +32,13 @@ include_once("../model/database.php");
         <?php include_once "partials/header.php" ?>
         
         <main>
+            <?php if (isset($_GET['error'])): ?>
+                <div class="alert alert-danger"><?= htmlspecialchars($_GET['error']) ?></div>
+            <?php endif; ?>
+            <?php if (isset($_GET['success'])): ?>
+                <div class="alert alert-success"><?= htmlspecialchars($_GET['success']) ?></div>
+            <?php endif; ?>
+            
             <section>
                 <!-- New admin user form -->
                 <h1 class="first_row">Add New Admin User</h1>
